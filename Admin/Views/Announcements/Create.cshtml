@@ -1,0 +1,121 @@
+﻿@model Announcement
+
+<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+    <div class="app-brand demo">
+        <a asp-controller="Home" asp-action="Index" class="app-brand-link">
+            <span class="app-brand-text demo menu-text fw-bolder ms-2">TherapiCare</span>
+        </a>
+
+        <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+            <i class="bx bx-chevron-left bx-sm align-middle"></i>
+        </a>
+    </div>
+
+    <div class="menu-inner-shadow"></div>
+    <ul class="menu-inner py-1">
+        <!-- Dashboard -->
+        <li class="menu-item ">
+            <a class="menu-link" asp-area="Admin" asp-controller="Home" asp-action="Index">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div data-i18n="Analytics">Dashboard</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a class="menu-link" asp-area="Admin" asp-controller="TherapyProgram" asp-action="Index">
+                <i class="menu-icon tf-icons bx bx-collection"></i>
+                <div data-i18n="Analytics">Program</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a class="menu-link" asp-area="Admin" asp-controller="Billings" asp-action="Index">
+                <i class="menu-icon tf-icons bi bi-cash"></i>
+                <div data-i18n="Analytics">Billings</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a asp-area="Admin" asp-controller="AdminList" asp-action="ListOfStudent" class="menu-link">
+                <i class="menu-icon tf-icons bi bi-people"></i>
+                <div data-i18n="Basic">Student List</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a asp-area="Admin" asp-controller="AdminList" asp-action="ListOfParent" class="menu-link">
+                <i class="menu-icon tf-icons bi bi-people"></i>
+                <div data-i18n="Basic">Parent List</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bi bi-person"></i>
+                <div data-i18n="Account Settings">Manage User</div>
+            </a>
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a class="menu-link" asp-area="Admin" asp-controller="User" asp-action="Index">
+                        <div data-i18n="Account">User List</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a class="menu-link" asp-area="Identity" asp-page="/Account/Register">
+                        <div data-i18n="Notifications">Register Staff</div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="menu-item active">
+            <a asp-area="Admin" asp-controller="Announcements" asp-action="Index" class="menu-link">
+
+                <i class="flex-shrink-0 bx bi-megaphone me-2"></i>
+                <div data-i18n="Basic"> Announcement</div>
+            </a>
+        </li>
+    </ul>
+</aside>
+<h1 class="text-center my-4">Create Announcement</h1>
+<hr />
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <form asp-action="Create" method="post" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                       
+                        <div class="mb-3">
+                            <label asp-for="a_date" class="form-label">Date</label>
+                            <input asp-for="a_date" class="form-control" />
+                            <span asp-validation-for="a_date" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="a_title" class="form-label">Title</label>
+                            <input asp-for="a_title" class="form-control" />
+                            <span asp-validation-for="a_title" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="a_description" class="form-label">Description</label>
+                            <textarea asp-for="a_description" class="form-control" rows="5"></textarea>
+                            <span asp-validation-for="a_description" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Upload Image</label>
+                            <input type="file" class="form-control" name="file" />
+                            <span asp-validation-for="a_image" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="d-grid gap-2 d-md-block mb-3">
+                            <input type="submit" value="Create" class="btn btn-primary" /> |
+                            <a asp-action="Index" class="btn btn-outline-secondary">Back to List</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

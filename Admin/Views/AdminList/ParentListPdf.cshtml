@@ -1,0 +1,57 @@
+﻿@model IEnumerable<TherapiCareTest.ViewModel.ParentViewModel>
+
+@{
+    Layout = "~/Views/Shared/_PdfLayout.cshtml";
+    ViewData["Title"] = "Parent List";
+}
+
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        text-align: center; /* Center the content */
+        padding: 8px;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    .table {
+        margin: auto; /* Center the table on the page */
+    }
+</style>
+
+<div class="row pb-3">
+    <div class="col-6">
+        <h1>Parent List</h1>
+    </div>
+</div>
+
+<table class="table table-bordered table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.parentName)</th>
+            <th>@Html.DisplayNameFor(model => model.childrenName)</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var parent in Model)
+        {
+            <tr>
+                <td>@parent.parentName</td>
+                <td>@parent.childrenName</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

@@ -1,0 +1,149 @@
+﻿@model TherapyProgram
+
+<!-- Menu -->
+
+<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+    <div class="app-brand demo">
+        <a asp-controller="Home" asp-action="Index" class="app-brand-link">
+            <span class="app-brand-text demo menu-text fw-bolder ms-2">TherapiCare</span>
+        </a>
+
+        <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+            <i class="bx bx-chevron-left bx-sm align-middle"></i>
+        </a>
+    </div>
+
+    <div class="menu-inner-shadow"></div>
+    <ul class="menu-inner py-1">
+        <!-- Dashboard -->
+        <li class="menu-item">
+            <a class="menu-link" asp-area="Admin" asp-controller="Home" asp-action="Index">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div data-i18n="Analytics">Dashboard</div>
+            </a>
+        </li>
+        <li class="menu-item active">
+            <a class="menu-link" asp-area="Admin" asp-controller="TherapyProgram" asp-action="Index">
+                <i class="menu-icon tf-icons bx bx-collection"></i>
+                <div data-i18n="Analytics">Program</div>
+            </a>
+        </li>
+        <li class="menu-item ">
+            <a class="menu-link" asp-area="Admin" asp-controller="Billings" asp-action="Index">
+                <i class="menu-icon tf-icons bi bi-cash"></i>
+                <div data-i18n="Analytics">Billings</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a asp-area="Admin" asp-controller="AdminList" asp-action="ListOfStudent" class="menu-link">
+                <i class="menu-icon tf-icons bi bi-people"></i>
+                <div data-i18n="Basic">Student List</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a asp-area="Admin" asp-controller="AdminList" asp-action="ListOfParent" class="menu-link">
+                <i class="menu-icon tf-icons bi bi-people"></i>
+                <div data-i18n="Basic">Parent List</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bi bi-person"></i>
+                <div data-i18n="Account Settings">Manage User</div>
+            </a>
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a class="menu-link" asp-area="Admin" asp-controller="User" asp-action="Index">
+                        <div data-i18n="Account">User List</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a class="menu-link" asp-area="Identity" asp-page="/Account/Register">
+                        <div data-i18n="Notifications">Register Staff</div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="menu-item ">
+            <a asp-area="Admin" asp-controller="Announcements" asp-action="Index" class="menu-link">
+
+                <i class="flex-shrink-0 bx bi-megaphone me-2"></i>
+                <div data-i18n="Basic"> Announcement</div>
+            </a>
+        </li>
+    </ul>
+</aside>
+
+<!-- / Menu -->
+<!-- Navbar -->
+
+<nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
+     id="layout-navbar">
+    <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
+        <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+            <i class="bx bx-menu bx-sm"></i>
+        </a>
+    </div>
+
+    <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+
+        <ul class="navbar-nav flex-row align-items-center ms-auto">
+        </ul>
+    </div>
+</nav>
+
+<!-- / Navbar -->
+
+<div class="row pt-4 pb-3">
+    <div class="col-6">
+        <h2>Edit Therapy Program</h2>
+    </div>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-12">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-floating py-2 col-12">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-floating py-2 col-12">
+                    <label asp-for="Description" class="control-label"></label>
+                    <input asp-for="Description" class="form-control" />
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="form-floating py-2 col-12">
+                    <label asp-for="Objective" class="control-label"></label>
+                    <input asp-for="Objective" class="form-control" />
+                    <span asp-validation-for="Objective" class="text-danger"></span>
+                </div>
+                <div class="form-floating py-2 col-12">
+                    <label asp-for="WeekdayPrice" class="control-label"></label>
+                    <input asp-for="WeekdayPrice" class="form-control" />
+                    <span asp-validation-for="WeekdayPrice" class="text-danger"></span>
+                </div>
+                <div class="form-floating py-2 col-12">
+                    <label asp-for="WeekendPrice" class="control-label"></label>
+                    <input asp-for="WeekendPrice" class="form-control" />
+                    <span asp-validation-for="WeekendPrice" class="text-danger"></span>
+                </div>
+                <div class="row pt-2">
+                    <div class="col-6 col-md-6">
+                        <button type="submit" class="btn btn-primary form-control">Edit</button>
+                    </div>
+                    <div class="col-6 col-md-6">
+                        <a asp-controller="TherapyProgram" asp-action="Index" class="btn btn-secondary form-control">Back to list</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    @section Scripts {
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+    }

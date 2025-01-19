@@ -1,0 +1,90 @@
+﻿@model IEnumerable<TherapiCareTest.Models.Billing>
+@using TherapiCareTest.Helpers
+@using TherapiCareTest.Data.Enum
+@using System.IO
+
+<div>
+    <br />
+    <b>Total Amount: RM @ViewData["TotalAmount"]</b>
+    <hr />
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Amount)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Date)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PaymentReceipt)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Student)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PaymentStatus)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TherapyProgram)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Parent)
+                </th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Amount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                    <td>
+                        @if (!string.IsNullOrEmpty(item.PaymentReceipt))
+                        {
+                            var fileName = item.PaymentReceipt.Substring(item.PaymentReceipt.LastIndexOf('/') + 1);
+                            var fileUrl = $"~/uploads/{item.PaymentReceipt}";
+
+                            <a href="@Url.Content(fileUrl)" target="_blank">@fileName</a>
+                        }
+                        else
+                        {
+                            <span>No receipt uploaded</span>
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Student.Name)
+                    </td>
+                    <td>
+                        @{
+                            var status = item.PaymentStatus ?? PaymentStatus.PENDING; // Default value if null
+                        }
+                        <span class="@BadgeHelper.GetBadgeClass(status)">@status.ToString()</span>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TherapyProgram.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Parent.Name)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="bi bi-pen-fill"></i></a>
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Details"><i class="bi bi-info-circle-fill"></i></a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="bi bi-trash"></i></a>
+                        <form asp-action="SendPaymentReminder" method="post" style="display:inline;">
+                            <input type="hidden" name="billingId" value="@item.Id" />
+                            <button type="submit" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Send Notification"><i class="bi bi-bell-fill"></i></button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    
+</div>
+

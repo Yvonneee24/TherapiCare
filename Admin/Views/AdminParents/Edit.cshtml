@@ -1,0 +1,43 @@
+﻿@model TherapiCareTest.Models.Parent
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit @Model.Name</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ParentId" />
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <h3>Children</h3>
+            <div class="form-group">
+                @foreach (var child in (IEnumerable<dynamic>)ViewBag.Children)
+                {
+                    <div>
+                        <label>Child Name: </label>
+                        <input value="@child.childrenName" class="form-control" readonly />
+                    </div>
+                    <div>
+                        <label>Program Name: </label>
+                        <input value="@child.programName" class="form-control" readonly />
+                    </div>
+                    <hr />
+                }
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+                <div>
+                    <a asp-action="ListOfParent" asp-controller="AdminList" class="btn btn-primary">Back to List</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+

@@ -1,0 +1,119 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@* without using layout page *@
+@{
+    //Layout = null; // To avoid using the shared layout
+    // Or, specify a different layout:
+    Layout = "~/Views/Shared/_PdfLayout.cshtml";
+
+    ViewBag.Title = "Invoice";
+}
+@model IEnumerable<TherapiCareTest.Models.Billing>
+@using TherapiCareTest.Helpers
+@using TherapiCareTest.Data.Enum
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Invoice</title>
+    <style>
+        /* Define your CSS styles for the invoice here */
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .invoice-container {
+            width: 800px;
+            margin: 0 auto;
+        }
+
+        .invoice-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .invoice-details {
+            margin-bottom: 20px;
+        }
+
+        .invoice-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+            .invoice-table th, .invoice-table td {
+                border: 1px solid #ddd;
+                padding: 8px;
+                text-align: left;
+            }
+
+            .invoice-table th {
+                background-color: #f2f2f2;
+            }
+    </style>
+</head>
+<body>
+    <div class="invoice-container">
+        <div class="invoice-header">
+            <h1>Invoice</h1>
+        </div>
+        <div class="invoice-details">
+            <table class="invoice-table">
+                <thead>
+                    <tr>
+                        <th>Amount</th>
+                        <th>Date</th>
+                        <th>Payment Receipt</th>
+                        <th>Student</th>
+                        <th>Payment Status</th>
+                        <th>Therapy Program</th>
+                        <th>Parent</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Amount</td>
+                            <td>@item.Date</td>
+                            <td>
+                                @if (!string.IsNullOrEmpty(item.PaymentReceipt))
+                                {
+                                    var fileName = item.PaymentReceipt.Substring(item.PaymentReceipt.LastIndexOf('/') + 1);
+                                    var fileUrl = $"~/uploads/{item.PaymentReceipt}";
+
+                                    <a href="@Url.Content(fileUrl)" target="_blank">@fileName</a>
+                                }
+                                else
+                                {
+                                    <span>No receipt uploaded</span>
+                                }
+                            </td>
+                            <td>@item.Student.Name</td>
+                            <td>
+                                @{
+                                    var status = item.PaymentStatus ?? PaymentStatus.PENDING; // Default value if null
+                                }
+                                <span class="@BadgeHelper.GetBadgeClass(status)">@status.ToString()</span>
+                            </td>
+                            <td>@item.TherapyProgram.Name</td>
+                            <td>@item.Parent.Name</td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="6" style="text-align: right;"><strong>Total:</strong></td>
+                        <td><strong>@Model.Sum(x => x.Amount)</strong></td> <!-- Calculate total -->
+                    </tr>
+                </tfoot>
+            </table>
+
+        </div>
+    </div>
+</body>
+</html>

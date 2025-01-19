@@ -1,0 +1,102 @@
+﻿@model TherapiCareTest.Models.Billing
+@using TherapiCareTest.Helpers
+@using TherapiCareTest.Data.Enum
+@{
+    //Layout = null; // To avoid using the shared layout
+    // Or, specify a different layout:
+    Layout = "~/Views/Shared/_PdfLayout.cshtml";
+
+    ViewBag.Title = "Invoice";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Invoice</title>
+    <style>
+        /* Define your CSS styles for the invoice here */
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .invoice-container {
+            width: 800px;
+            margin: 0 auto;
+        }
+
+        .invoice-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .invoice-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+            .invoice-table th, .invoice-table td {
+                border: 1px solid #ddd;
+                padding: 8px;
+                text-align: left;
+            }
+
+            .invoice-table th {
+                background-color: #f2f2f2;
+            }
+    </style>
+</head>
+<body>
+    <div class="invoice-container">
+        <div class="invoice-header">
+            <h1>Invoice</h1>
+        </div>
+        <table class="invoice-table">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Amount)</th>
+                <td>@Html.DisplayFor(model => model.Amount)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Date)</th>
+                <td>@Html.DisplayFor(model => model.Date)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.PaymentReceipt)</th>
+                <td>
+                    @if (!string.IsNullOrEmpty(Model.PaymentReceipt))
+                    {
+                        var fileName = Model.PaymentReceipt.Substring(Model.PaymentReceipt.LastIndexOf('/') + 1);
+                        var fileUrl = $"~/uploads/{Model.PaymentReceipt}";
+
+                        <a href="@Url.Content(fileUrl)" target="_blank">@fileName</a>
+                    }
+                    else
+                    {
+                        <span>No receipt uploaded</span>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Student)</th>
+                <td>@Html.DisplayFor(model => model.Student.Name)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.PaymentStatus)</th>
+                <td>@Html.DisplayFor(model => model.PaymentStatus)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.TherapyProgram)</th>
+                <td>@Html.DisplayFor(model => model.TherapyProgram.Name)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Parent)</th>
+                <td>@Html.DisplayFor(model => model.Parent.Name)</td>
+            </tr>
+            <tr>
+                <th>Total </th>
+                <td>RM @Model.Amount</td> <!-- Assuming Amount is a string, display it directly -->
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

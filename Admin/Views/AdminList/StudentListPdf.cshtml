@@ -1,0 +1,61 @@
+﻿@model IEnumerable<TherapiCareTest.ViewModel.StudentViewModel>
+
+@{
+    Layout = "~/Views/Shared/_PdfLayout.cshtml";
+    ViewData["Title"] = "Student List";
+}
+
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        text-align: center; /* Center the content */
+        padding: 8px;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    .table {
+        margin: auto; /* Center the table on the page */
+    }
+</style>
+
+<div class="row pb-3">
+    <div class="col-6">
+        <h1>Student List</h1>
+    </div>
+</div>
+
+<table class="table table-bordered table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Id)</th>
+            <th>@Html.DisplayNameFor(model => model.Name)</th>
+            <th>@Html.DisplayNameFor(model => model.DOB)</th>
+            <th>@Html.DisplayNameFor(model => model.Gender)</th>
+            <th>@Html.DisplayNameFor(model => model.programName)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var student in Model)
+        {
+            <tr>
+                <td>@student.Id</td>
+                <td>@student.Name</td>
+                <td>@student.DOB.ToString("d")</td>
+                <td>@student.Gender</td>
+                <td>@student.programName</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

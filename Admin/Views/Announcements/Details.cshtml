@@ -1,0 +1,105 @@
+﻿@model TherapiCareTest.Models.Announcement
+
+<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+    <div class="app-brand demo">
+        <a asp-controller="Home" asp-action="Index" class="app-brand-link">
+            <span class="app-brand-text demo menu-text fw-bolder ms-2">TherapiCare</span>
+        </a>
+
+        <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+            <i class="bx bx-chevron-left bx-sm align-middle"></i>
+        </a>
+    </div>
+
+    <div class="menu-inner-shadow"></div>
+    <ul class="menu-inner py-1">
+        <!-- Dashboard -->
+        <li class="menu-item ">
+            <a class="menu-link" asp-area="Admin" asp-controller="Home" asp-action="Index">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div data-i18n="Analytics">Dashboard</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a class="menu-link" asp-area="Admin" asp-controller="TherapyProgram" asp-action="Index">
+                <i class="menu-icon tf-icons bx bx-collection"></i>
+                <div data-i18n="Analytics">Program</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a class="menu-link" asp-area="Admin" asp-controller="Billings" asp-action="Index">
+                <i class="menu-icon tf-icons bi bi-cash"></i>
+                <div data-i18n="Analytics">Billings</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a asp-area="Admin" asp-controller="AdminList" asp-action="ListOfStudent" class="menu-link">
+                <i class="menu-icon tf-icons bi bi-people"></i>
+                <div data-i18n="Basic">Student List</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a asp-area="Admin" asp-controller="AdminList" asp-action="ListOfParent" class="menu-link">
+                <i class="menu-icon tf-icons bi bi-people"></i>
+                <div data-i18n="Basic">Parent List</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bi bi-person"></i>
+                <div data-i18n="Account Settings">Manage User</div>
+            </a>
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a class="menu-link" asp-area="Admin" asp-controller="User" asp-action="Index">
+                        <div data-i18n="Account">User List</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a class="menu-link" asp-area="Identity" asp-page="/Account/Register">
+                        <div data-i18n="Notifications">Register Staff</div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="menu-item active">
+            <a asp-area="Admin" asp-controller="Announcements" asp-action="Index" class="menu-link">
+
+                <i class="flex-shrink-0 bx bi-megaphone me-2"></i>
+                <div data-i18n="Basic"> Announcement</div>
+            </a>
+        </li>
+    </ul>
+</aside>
+
+<h1 class="text-center my-4">Announcement Details</h1>
+
+<div class="container">
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+            <h4 class="card-title text-center mb-4">Announcement</h4>
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-3">Date:</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.a_date)</dd>
+
+                <dt class="col-sm-3">Title:</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.a_title)</dd>
+
+                <dt class="col-sm-3">Description:</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.a_description)</dd>
+
+                <dt class="col-sm-3">Image:</dt>
+                <dd class="col-sm-9">
+                    <img src="@Model.a_image" class="img-fluid"
+                         style="max-width: 300px; border-radius: 10px; border: 2px solid #6f42c1; box-shadow: 0 4px 8px rgba(111, 66, 193, 0.2); padding: 5px;" />
+                </dd>
+            </dl>
+        </div>
+    </div>
+
+    <div class="text-center">
+        <a asp-action="Edit" asp-route-id="@Model?.a_id" class="btn btn-primary">Edit</a> |
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </div>
+</div>
