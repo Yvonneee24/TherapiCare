@@ -1,0 +1,79 @@
+﻿@page
+@model ResendEmailConfirmationModel
+<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+    <div class="app-brand demo">
+        <a asp-controller="Home" asp-action="Index" class="app-brand-link">
+            <span class="app-brand-text demo menu-text fw-bolder ms-2">TherapiCare</span>
+        </a>
+
+        <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+            <i class="bx bx-chevron-left bx-sm align-middle"></i>
+        </a>
+    </div>
+
+    <div class="menu-inner-shadow"></div>
+
+    <ul class="menu-inner py-1">
+        <!-- Dashboard -->
+        <li class="menu-item ">
+            <a asp-area="Customer" asp-controller="Home" asp-action="Index" class="menu-link">
+                <i class="flex-shrink-0 bx bi bi-house me-2"></i>
+                <div data-i18n="Analytics"> About Us</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a asp-area="Identity" asp-controller="Account" asp-action="Register" class="menu-link">
+                <i class="flex-shrink-0 bx bi-pencil-square me-2"></i>
+                <div data-i18n="Analytics"> Register</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a asp-area="Identity" asp-controller="Account" asp-action="Login" class="menu-link">
+                <i class="flex-shrink-0 bx bi-house-door-fill me-2"></i>
+                <div data-i18n="Analytics"> Log In</div>
+            </a>
+        </li>
+
+
+    </ul>
+</aside>
+
+<nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
+     id="layout-navbar">
+    <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
+        <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+            <i class="bx bx-menu bx-sm"></i>
+        </a>
+    </div>
+
+    <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+
+        <ul class="navbar-nav flex-row align-items-center ms-auto">
+        </ul>
+    </div>
+</nav>
+
+<div class="card-body p-4">
+    <div class="row pb-3 justify-content">
+        <div class="col-6">
+            <h2 class="fw-bold">Resend Email Confirmation</h2>
+        </div>
+<h2>Enter your email.</h2>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="All" class="text-danger" role="alert"></div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Email" class="form-control" aria-required="true" placeholder="name@example.com" />
+                <label asp-for="Input.Email" class="form-label"></label>
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+            <button type="submit" class="w-100 btn btn-lg btn-primary">Resend</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

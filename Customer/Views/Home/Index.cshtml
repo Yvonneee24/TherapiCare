@@ -1,0 +1,435 @@
+﻿@{
+    ViewData["Title"] = "Index";
+   
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TherapiCare - A Rehabilitation Management System">
+    <meta name="keywords" content="rehabilitation, therapy, management, healthcare, progress tracking, personalized programs">
+    <title>TherapiCare - Rehabilitation Management System</title>
+   
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        /* General Styles */
+
+        /* Hero Section */
+        .hero-header {
+            position: relative;
+            background: url('../assets/img/landingImages/photomain.jpg') no-repeat center center;
+            background-size: cover;
+            color: #f8f9fa; /* Lighter text color */
+            text-align: center;
+            padding: 150px 0; /* Increased height */
+        }
+
+            .hero-header::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+                z-index: 1;
+            }
+
+            .hero-header .container {
+                position: relative;
+                z-index: 2;
+            }
+
+            .hero-header h1 {
+                font-size: 3.5em; /* Increased font size */
+                font-weight: bold;
+                margin-bottom: 20px;
+            }
+
+            .hero-header p {
+                font-size: 1.3em; /* Increased font size */
+                margin-bottom: 30px;
+            }
+
+            .hero-header a {
+                background-color: #a891d4;
+                border: none;
+                padding: 15px 30px; /* Increased padding */
+                border-radius: 50px;
+                color: #fff;
+                font-size: 1.2em; /* Increased font size */
+                text-decoration: none;
+            }
+
+                .hero-header a:hover {
+                    background-color: #a891d4;
+                }
+
+        /* Features Section */
+        .features-item i {
+            font-size: 2rem;
+        }
+
+        .bg-secondary {
+            background-color: #a891d4 !important;
+        }
+
+        .bg-primary {
+            background-color: #D8BFD8 !important;
+        }
+
+        /* Carousel Styles */
+        .carousel-item img {
+            width: 80%;
+            height: 300px;
+            display: block;
+            margin: 0 auto;
+            object-fit: contain;
+        }
+
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            padding: 10px;
+        }
+
+        .carousel-item {
+            transition: transform 1s ease;
+        }
+
+        /* Smooth Transition Styles */
+        .section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+            .section.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        /* Circular Hover Button */
+        .circular-btn {
+            display: inline-block;
+            width: 50px; /* Adjust width and height for desired size */
+            height: 50px; /* Adjust width and height for desired size */
+            position: fixed; /* Fixed position */
+            bottom: 20px; /* Place it at the bottom of the page */
+            right: 20px; /* Place it 20px from the right */
+            z-index: 99; /* Ensure it is above other elements */
+            line-height: 50px; /* Center text vertically */
+            text-align: center; /* Center text horizontally */
+            border-radius: 50%; /* Make it circular */
+            background-color: #a891d4; /* Default background color */
+            color: #fff; /* Text color */
+            font-size: 1.5em; /* Font size */
+            border: none; /* Remove border */
+            cursor: pointer; /* Pointer cursor */
+            transition: background-color 0.3s ease; /* Smooth transition */
+        }
+
+            .circular-btn:hover {
+                background-color: #a891d4; /* Darker background color on hover */
+                transform: translateY(-5px); /* Move button up by 5px */
+            }
+
+        .text-secondary {
+            color: #a891d4 !important; /* Lighter purple color */
+        }
+
+        .bg-secondary {
+            background-color: #a891d4 !important; /* Lighter purple background */
+        }
+
+        .section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+            .section.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        .bi {
+            font-size: 1.5em;
+        }
+
+        .shadow-sm {
+            box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;
+        }
+
+    </style>
+</head>
+<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+    <div class="app-brand demo">
+        <a asp-controller="Home" asp-action="Index" class="app-brand-link">
+            <span class="app-brand-text demo menu-text fw-bolder ms-2">TherapiCare</span>
+        </a>
+
+        <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+            <i class="bx bx-chevron-left bx-sm align-middle"></i>
+        </a>
+    </div>
+
+    <div class="menu-inner-shadow"></div>
+
+    <ul class="menu-inner py-1">
+        <!-- Dashboard -->
+        <li class="menu-item active">
+            <a asp-area="Customer" asp-controller="Home" asp-action="Index" class="menu-link">
+                <i class="flex-shrink-0 bx bi bi-house me-2"></i>
+                <div data-i18n="Analytics"> About Us</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a asp-area="Identity" asp-controller="Account" asp-action="Register" class="menu-link">
+                <i class="flex-shrink-0 bx bi-pencil-square me-2"></i>
+                <div data-i18n="Analytics"> Register</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a asp-area="Identity" asp-controller="Account" asp-action="Login" class="menu-link">
+                <i class="flex-shrink-0 bx bi-house-door-fill me-2"></i>
+                <div data-i18n="Analytics"> Log In</div>
+            </a>
+        </li>
+ 
+
+    </ul>
+</aside>
+<body>
+    <br />
+    <!-- Hero Start -->
+    <div class="container-fluid hero-header section">
+        <div class="container">
+            <h4 class="mb-3 text-white">TherapiCare</h4>
+            <h1 class="mb-3 display-3">Rehabilitation Management System</h1>
+            <p class="lead mb-4">Helping you manage your rehabilitation journey with ease and efficiency.</p>
+            @* <a href="#features" class="btn btn-secondary btn-lg rounded-pill">Register Now</a> *@
+            <a asp-area="Identity" asp-controller="Account" asp-action="Register" class="btn btn-secondary btn-lg rounded-pill">Register Now</a>
+
+        </div>
+    </div>
+    <!-- Hero End -->
+    <!-- Features Section Start -->
+    <div id="features" class="container-fluid features py-5">
+        <div class="container py-5">
+            <h2 class="text-center text-secondary mb-5">Our Features</h2>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+                <div class="col">
+                    <div class="features-item text-center rounded bg-light p-4 h-100">
+                        <div class="d-flex align-items-center justify-content-center rounded-circle bg-primary mb-4 mx-auto" style="width: 80px; height: 80px;">
+                            <i class="bi bi-file-person text-white"></i>
+                        </div>
+                        <div class="features-content text-center">
+                            <h5>Personalized Programs</h5>
+                            <p class="mb-0">Custom-tailored rehabilitation plans for each student's unique needs.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="features-item text-center rounded bg-light p-4 h-100">
+                        <div class="d-flex align-items-center justify-content-center rounded-circle bg-secondary mb-4 mx-auto" style="width: 80px; height: 80px;">
+                            <i class="bi bi-graph-up text-white"></i>
+                        </div>
+                        <div class="features-content text-center">
+                            <h5>Progress Tracking</h5>
+                            <p class="mb-0">Real-time monitoring and reporting of student progress.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="features-item text-center rounded bg-light p-4 h-100">
+                        <div class="d-flex align-items-center justify-content-center rounded-circle bg-primary mb-4 mx-auto" style="width: 80px; height: 80px;">
+                            <i class="bi bi-people text-white"></i>
+                        </div>
+                        <div class="features-content text-center">
+                            <h5>Parental Access</h5>
+                            <p class="mb-0">Parents can view and engage with their child's rehabilitation plan.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="features-item text-center rounded bg-light p-4 h-100">
+                        <div class="d-flex align-items-center justify-content-center rounded-circle bg-secondary mb-4 mx-auto" style="width: 80px; height: 80px;">
+                            <i class="bi bi-person-badge text-white"></i>
+                        </div>
+                        <div class="features-content text-center">
+                            <h5>Expert Guidance</h5>
+                            <p class="mb-0">Access to experienced therapists and educators.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Features Section End -->
+    <!-- Carousel Section Start -->
+    <div id="photoCarousel" class="carousel slide section" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <h2 class="text-center text-secondary mb-5">Gallery</h2>
+            <div class="carousel-item active">
+                <img src="../assets/img/landingImages/photos1.jpg" class="d-block w-100" alt="Photo 1">
+            </div>
+            
+            <div class="carousel-item">
+                <img src="../assets/img/landingImages/photos3.jpg" class="d-block w-100" alt="Photo 3">
+            </div>
+            <div class="carousel-item">
+                <img src="../assets/img/landingImages/photos4.jpg" class="d-block w-100" alt="Photo 4">
+            </div>
+            <div class="carousel-item">
+                <img src="../assets/img/landingImages/photos6.jpg" class="d-block w-100" alt="Photo 6">
+            </div>
+            <div class="carousel-item">
+                <img src="../assets/img/landingImages/photos7.jpg" class="d-block w-100" alt="Photo 7">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#photoCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#photoCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    <!-- Carousel Section End -->
+    <!-- Facts Start -->
+    <div class="container-fluid py-5 section">
+        <div class="container">
+            
+            <div class="bg-light p-5 rounded text-center">
+                <h2 class="text-center text-secondary mb-5">Achievements</h2>
+                <div class="row g-4 justify-content-center">
+                    <div class="col-md-6 col-lg-3">
+                        <div class="counter bg-white rounded p-5">
+                            <i class="fa fa-users text-secondary fa-2x mb-2"></i>
+                            <h4>Satisfied Customers</h4>
+                            <h1 class="display-4">95%</h1>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="counter bg-light rounded p-5">
+                            <i class="fa fa-thumbs-up text-secondary fa-2x mb-2"></i>
+                            <h4>Children Progress</h4>
+                            <h1 class="display-4">13506</h1>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="counter bg-white rounded p-5">
+                            <i class="fa fa-certificate text-secondary fa-2x mb-2"></i>
+                            <h4>Sessions Recorded</h4>
+                            <h1 class="display-4">15889</h1>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="counter bg-white rounded p-5">
+                            <i class="fa fa-award text-secondary fa-2x mb-2"></i>
+                            <h4>Establish Since</h4>
+                            <h1 class="display-4">2015</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="divider">
+            <div class="divider-text mb-3">
+                <i class="bx bx-star"></i>
+            </div>
+    </div>
+    <!-- Facts End -->
+    
+    <!-- Horizontal -->
+  @*   <h5 class="pb-1 mb-4">Horizontal</h5> *@
+    <div class="row mb-5">
+        <div class="col-md">
+            <div class="card mb-3">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img class="card-img card-img-left" src="../assets/img/elements/5.jpg" alt="Card image" />
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            
+                            <h5 class="text-secondary text-uppercase mb-4">Contact Us</h5>
+                            <p class="mb-0"><i class="bi bi-telephone me-2"></i>07-244 4223</p>
+                            <p class="mb-1"><i class="bi bi-envelope me-2"></i>idzmirkidshub@gmail.com</p>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md">
+            <div class="card mb-3">
+                <div class="row g-0">
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="text-secondary text-uppercase mb-4">Opening Hours</h5>
+                            <p class="mb-0">Monday - Friday: 9am - 6pm</p>
+                            <p class="mb-0">Saturday: 10am - 4pm</p>
+                            <p class="mb-0">Sunday: Closed</p>
+                            
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <img class="card-img card-img-right" src="../assets/img/elements/12.jpg" alt="Card image" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <!--/ Horizontal -->
+    <button id="scrollToTopBtn" class="circular-btn" onclick="topFunction()" title="Go to top"><i class="fas fa-arrow-up"></i></button>
+
+
+
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Add scroll event listener for smooth transition effect
+        window.addEventListener('scroll', function () {
+            document.querySelectorAll('.section').forEach(function (section) {
+                if (section.getBoundingClientRect().top < window.innerHeight * 0.75) {
+                    section.classList.add('visible');
+                }
+            });
+        });
+    </script>
+    <script>
+        // Get the button
+        var scrollToTopBtn = document.getElementById("scrollToTopBtn");
+
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function () {
+            scrollFunction();
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                scrollToTopBtn.style.display = "block";
+            } else {
+                scrollToTopBtn.style.display = "none";
+            }
+        }
+
+        // Function to scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        }
+
+    </script>
+
+
+</body>
+</html>

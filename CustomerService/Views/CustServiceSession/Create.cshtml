@@ -1,0 +1,82 @@
+﻿@model TherapiCareTest.ViewModels.CreateSessionVM
+
+<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+    <div class="app-brand demo">
+        <a asp-controller="CustServices" asp-action="Index" class="app-brand-link">
+            <span class="app-brand-text demo menu-text fw-bolder ms-2">TherapiCare</span>
+        </a>
+
+        <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+            <i class="bx bx-chevron-left bx-sm align-middle"></i>
+        </a>
+    </div>
+
+    <div class="menu-inner-shadow"></div>
+
+    <ul class="menu-inner py-1">
+        <!-- Dashboard -->
+        <li class="menu-item">
+            <a asp-area="CustomerService" asp-controller="CustServices" asp-action="Index" class="menu-link">
+                <i class="flex-shrink-0 bx bi bi-chat-dots-fill me-2"></i>
+                <div data-i18n="Analytics"> Customer Service Chat</div>
+            </a>
+        </li>
+        <li class="menu-item ">
+            <a asp-area="CustomerService" asp-controller="CustomerServices" asp-action="ApproveReport" class="menu-link">
+                <i class="flex-shrink-0 bi bi-file-earmark-text-fill me-2"></i>
+                <div data-i18n="Analytics"> Report Approval</div>
+            </a>
+        </li>
+        <li class="menu-item active">
+            <a asp-area="CustomerService" asp-controller="CustServiceTherapyProgram" asp-action="Index" class="menu-link">
+                <i class="flex-shrink-0 bx bx bx-collection me-2"></i>
+                <div data-i18n="Analytics"> Manage Program</div>
+            </a>
+        </li>
+
+
+    </ul>
+</aside>
+
+<div class="card-body p-4">
+    <div class="row pb-3">
+        <div class="col-6">
+            <h3 class="fw-bold py-3 mb-2"><span class="text-muted fw-light">Session /</span> Create Session</h3>
+        </div>
+        <hr />
+
+        <div class="row">
+            <div class="col-md-12">
+<form asp-action="Create">
+    <div class="form-group">
+        <label asp-for="Session.Name" class="control-label"></label>
+        <input asp-for="Session.Name" class="form-control" />
+        <span asp-validation-for="Session.Name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Session.Description" class="control-label"></label>
+        <input asp-for="Session.Description" class="form-control" />
+        <span asp-validation-for="Session.Description" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ProgramName" class="control-label"></label>
+        <input asp-for="ProgramName" class="form-control" readonly/>
+        <span asp-validation-for="ProgramName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <input type="hidden" asp-for="Session.ProgramId" />
+        <input type="hidden" asp-for="Session.Id" />
+    </div>
+    <br />
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Create</button>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

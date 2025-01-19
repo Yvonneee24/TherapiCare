@@ -1,0 +1,98 @@
+﻿@model IEnumerable<TherapiCareTest.Models.Report>
+<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+    <div class="app-brand demo">
+        <a asp-controller="CustServices" asp-action="Index" class="app-brand-link">
+            <span class="app-brand-text demo menu-text fw-bolder ms-2">TherapiCare</span>
+        </a>
+
+        <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+            <i class="bx bx-chevron-left bx-sm align-middle"></i>
+        </a>
+    </div>
+
+    <div class="menu-inner-shadow"></div>
+
+    <ul class="menu-inner py-1">
+        <!-- Dashboard -->
+        <li class="menu-item">
+            <a asp-area="CustomerService" asp-controller="CustServices" asp-action="Index" class="menu-link">
+                <i class="flex-shrink-0 bx bi bi-chat-dots-fill me-2"></i>
+                <div data-i18n="Analytics"> Customer Service Chat</div>
+            </a>
+        </li>
+        <li class="menu-item active">
+            <a asp-area="CustomerService" asp-controller="CustomerServices" asp-action="ApproveReport" class="menu-link">
+                <i class="flex-shrink-0 bi bi-file-earmark-text-fill me-2"></i>
+                <div data-i18n="Analytics"> Report Approval</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a asp-area="CustomerService" asp-controller="CustServiceTherapyProgram" asp-action="Index" class="menu-link">
+                <i class="flex-shrink-0 bx bx bx-collection me-2"></i>
+                <div data-i18n="Analytics"> Manage Program</div>
+            </a>
+        </li>
+
+
+    </ul>
+</aside>
+
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h2 class="fw-bold py-3 mb-2">Report Approval</h2>
+        </div>
+    </div>
+
+    <table class="table table-bordered table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>Student Name</th>
+            <th>Report Title</th>
+            <th>Date</th>
+            <th>Treatment</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var report in Model)
+        {
+            <tr>
+                <td>@report.studentName</td>
+                <td>@report.Title</td>
+                <td>@report.Date.ToString("yyyy-MM-dd")</td>
+                <td>@report.treatment</td>
+                <td>
+                    @if (report.reportStatus == "Pending")
+                    {
+                        <span class="badge bg-label-warning">@report.reportStatus</span>
+                    }
+                    else
+                    {
+                        @report.reportStatus
+                    }
+                </td>
+                <td>
+                    @if (report.reportStatus == "Pending")
+                    {
+                        <div class="btn-group" role="group">
+                            <form asp-action="ApproveReport" asp-route-reportId="@report.Id" method="post" class="mr-2">
+                                <button type="submit" class="btn btn-success"> Approve</button>
+                            </form>
+
+                            <form asp-action="RejectReport" asp-route-reportId="@report.Id" method="post">
+                                <button type="submit" class="btn btn-danger"> Reject</button>
+                            </form>
+                        </div>
+                    }
+                    else
+                    {
+                        <p>This report has already been @report.reportStatus</p>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

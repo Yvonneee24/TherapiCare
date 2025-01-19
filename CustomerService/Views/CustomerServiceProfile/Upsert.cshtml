@@ -1,0 +1,78 @@
+﻿@model TherapiCareTest.ViewModels.CustomerServiceProfileVM
+
+<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+    <div class="app-brand demo">
+        <a asp-controller="CustServices" asp-action="Index" class="app-brand-link">
+            <span class="app-brand-text demo menu-text fw-bolder ms-2">TherapiCare</span>
+        </a>
+
+        <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+            <i class="bx bx-chevron-left bx-sm align-middle"></i>
+        </a>
+    </div>
+
+    <div class="menu-inner-shadow"></div>
+
+    <ul class="menu-inner py-1">
+        <!-- Dashboard -->
+        <li class="menu-item">
+            <a asp-area="CustomerService" asp-controller="CustServices" asp-action="Index" class="menu-link">
+                <i class="flex-shrink-0 bx bi bi-chat-dots-fill me-2"></i>
+                <div data-i18n="Analytics"> Customer Service Chat</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a asp-area="CustomerService" asp-controller="CustomerServices" asp-action="ApproveReport" class="menu-link">
+                <i class="flex-shrink-0 bi bi-file-earmark-text-fill me-2"></i>
+                <div data-i18n="Analytics"> Report Approval</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a asp-area="CustomerService" asp-controller="CustServiceTherapyProgram" asp-action="Index" class="menu-link">
+                <i class="flex-shrink-0 bx bx bx-collection me-2"></i>
+                <div data-i18n="Analytics"> Manage Program</div>
+            </a>
+        </li>
+
+
+    </ul>
+</aside>
+
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h2 class="fw-bold py-3 mb-2">Update Profile</h2>
+        </div>
+    </div>
+<form asp-action="Upsert" method="post">
+    <div class="form-group">
+        <label asp-for="CustServiceId" class="control-label"></label>
+        <input asp-for="CustServiceId" class="form-control" readonly="@(string.IsNullOrEmpty(Model.CustServiceId) ? null : "readonly")" />
+        <span asp-validation-for="CustServiceId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Name" class="control-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Email" class="control-label"></label>
+        <input asp-for="Email" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="PhoneNumber" class="control-label"></label>
+        <input asp-for="PhoneNumber" class="form-control" />
+    </div>
+    <input type="hidden" asp-for="CustServiceId" />
+    <input type="hidden" asp-for="AppUserId" />
+    <div class="form-group">
+        <input type="submit" value="Save" class="btn btn-primary" />
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
