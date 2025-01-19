@@ -1,0 +1,128 @@
+﻿@model IEnumerable<TherapiCareTest.Models.Student>
+
+<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+    <div class="app-brand demo">
+        <a asp-controller="CustServices" asp-action="Index" class="app-brand-link">
+            <span class="app-brand-text demo menu-text fw-bolder ms-2">TherapiCare</span>
+        </a>
+
+        <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+            <i class="bx bx-chevron-left bx-sm align-middle"></i>
+        </a>
+    </div>
+
+    <div class="menu-inner-shadow"></div>
+
+    <ul class="menu-inner py-1">
+        <!-- Dashboard -->
+        <li class="menu-item">
+            <a asp-area="Therapist" asp-controller="Home" asp-action="Index" class="menu-link">
+                <i class="flex-shrink-0 bx bi bi-calendar-check me-2"></i>
+                <div data-i18n="Analytics"> My Slots</div>
+            </a>
+        </li>
+        <li class="menu-item active">
+            <a asp-area="Therapist" asp-controller="TherapistList" asp-action="ListOfStudent" class="menu-link">
+                <i class="flex-shrink-0 bx bx bx-collection me-2"></i>
+                <div data-i18n="Analytics"> Student List</div>
+            </a>
+        </li>
+
+
+    </ul>
+</aside>
+
+<!-- / Menu -->
+<nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
+     id="layout-navbar">
+    <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
+        <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+            <i class="bx bx-menu bx-sm"></i>
+        </a>
+    </div>
+
+    <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+        <ul class="navbar-nav flex-row align-items-center ms-auto">
+        </ul>
+    </div>
+</nav>
+
+<!-- Bootstrap Modal -->
+<div class="modal fade" id="noReportsModal" tabindex="-1" aria-labelledby="noReportsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="noReportsModalLabel">No Reports Found</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                There are no reports available for this student.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h2 class="fw-bold py-3 mb-2">Student List</h2>
+        </div>
+    </div>
+
+    <table class="table table-bordered table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Name)</th>
+                <th>@Html.DisplayNameFor(model => model.Gender)</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Gender)
+                    </td>
+                    <td>
+                        <a href="#" class="btn btn-info view-reports" data-student-id="@item.Id"> <i class='bx bx-detail'></i> View All Report </a>
+                        <a asp-action="Create" asp-controller="Reports" asp-route-studentId="@item.Id" class="btn btn-primary"> <i class='bx bxs-file-plus'></i> Create New Report </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<!-- JavaScript to handle modal popup and report view -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.view-reports').click(function (e) {
+            e.preventDefault();
+            var studentId = $(this).data('student-id');
+
+            // Perform AJAX request to check if reports exist
+            $.get('@Url.Action("ViewAllReportsForStudent", "Reports")', { id: studentId })
+                .done(function () {
+                    // Redirect to view reports action
+                    window.location.href = '@Url.Action("ViewAllReportsForStudent", "Reports", new { area = "Therapist" })?id=' + studentId;
+                })
+                .fail(function () {
+                    // Show modal popup if no reports found
+                    $('#noReportsModal').modal('show');
+                });
+        });
+    });
+</script>
+
+@* @section Scripts {
+    <script src="~/js/studentTherapist.js"></script>
+} *@

@@ -1,0 +1,637 @@
+﻿@model IEnumerable<TherapiCareTest.Models.Report>
+
+<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+    <div class="app-brand demo">
+        <a asp-controller="CustServices" asp-action="Index" class="app-brand-link">
+            <span class="app-brand-text demo menu-text fw-bolder ms-2">TherapiCare</span>
+        </a>
+
+        <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+            <i class="bx bx-chevron-left bx-sm align-middle"></i>
+        </a>
+    </div>
+
+    <div class="menu-inner-shadow"></div>
+
+    <ul class="menu-inner py-1">
+        <!-- Dashboard -->
+        <li class="menu-item ">
+            <a asp-area="Therapist" asp-controller="Home" asp-action="Index" class="menu-link">
+                <i class="flex-shrink-0 bx bi bi-chat-dots-fill me-2"></i>
+                <div data-i18n="Analytics"> Customer Service</div>
+            </a>
+        </li>
+        <li class="menu-item active">
+            <a asp-area="Therapist" asp-controller="Reports" asp-action="ViewAllReportsForStudent" class="menu-link">
+                <i class="flex-shrink-0 bi bi-file-earmark-text-fill me-2"></i>
+                <div data-i18n="Analytics"> Report</div>
+            </a>
+        </li>
+        <li class="menu-item ">
+            <a asp-area="Therapist" asp-controller="TherapistList" asp-action="ListOfStudent" class="menu-link">
+                <i class="flex-shrink-0 bx bx bx-collection me-2"></i>
+                <div data-i18n="Analytics"> Student List</div>
+            </a>
+        </li>
+
+
+    </ul>
+</aside>
+<!-- / Menu -->
+<nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
+     id="layout-navbar">
+    <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
+        <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+            <i class="bx bx-menu bx-sm"></i>
+        </a>
+    </div>
+
+    <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+        <ul class="navbar-nav flex-row align-items-center ms-auto">
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h2 class="fw-bold py-3 mb-2">Reports</h2>
+        </div>
+    </div>
+
+    <table class="table table-bordered table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.staffId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.studentName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.numberOfSessionsAttended)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.treatment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.reportStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.enterByHimself)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.enterWithPrompting)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.difficultiesSeparateWithParents)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.withCryingRefuse)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.greetingWithPrompt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.greetingByHimself)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.mute)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.refuseToEnter)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.subjectiveAssessmentNotes)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.rangeOfMotion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.muscleTone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.muscleStrength)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.muscleEndurance)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.jointMobility)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.trunkControlBalance)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.grossMotorFunctionStanding)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.grossMotorFunctionCrawling)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.grossMotorFunctionWalking)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.grossMotorFunctionJumping)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.grossMotorFunctionBroadJump)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.grossMotorFunctionKickBall)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.grossMotorFunctionThrowBall)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fineMotorFunctionGraspRelease)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fineMotorFunctionReaching)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fineMotorFunctionPutBlock)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fineMotorFunctionScribbles)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fineMotorFunctionCubes)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fineMotorFunctionMature)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fineMotorFunctionImmature)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fineMotorFunctionImitate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fineMotorFunctionCopying)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.objectiveAssessmentNotes)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tactile)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.auditory)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.visual)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.olfactory)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.gustatory)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.vestibular)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.proprioception)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.alphabet)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.numbers)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.shapes)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.colors)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.memoryFunction)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.attention)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.concentration)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.problemSolving)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.writingSkill)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cognitiveProgressNote)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.independent)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.withSupervision)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.maximumAssistance)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.toiletTrained)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.moneyManagement)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.timeConcept)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.foldingClothes)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.hangingClothes)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.sweepFloor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.makingDrinks)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.prepareSimpleFood)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.usePhone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.occupationRemark)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.temperedTantrum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.manipulative)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.easilyDistracted)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.passive)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cooperative)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.isolation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.reluctant)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.repatitivePrompting)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.verbalPrompting)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.physicalPrompting)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.eyeContactPerson)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.eyeContactObject)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.initiateAnswerQuestion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.verbalRespond)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.voiceClarify)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.facialExpression)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.bodyLanguage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.takingTurn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.sharing)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.stayInGrouping)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.academicPerformance)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.analysisProblem)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.txPlan)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.therapistIncharge)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.staffId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.studentName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.numberOfSessionsAttended)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.treatment)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.reportStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.enterByHimself)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.enterWithPrompting)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.difficultiesSeparateWithParents)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.withCryingRefuse)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.greetingWithPrompt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.greetingByHimself)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.mute)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.refuseToEnter)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.subjectiveAssessmentNotes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.rangeOfMotion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.muscleTone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.muscleStrength)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.muscleEndurance)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.jointMobility)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.trunkControlBalance)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.grossMotorFunctionStanding)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.grossMotorFunctionCrawling)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.grossMotorFunctionWalking)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.grossMotorFunctionJumping)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.grossMotorFunctionBroadJump)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.grossMotorFunctionKickBall)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.grossMotorFunctionThrowBall)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fineMotorFunctionGraspRelease)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fineMotorFunctionReaching)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fineMotorFunctionPutBlock)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fineMotorFunctionScribbles)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fineMotorFunctionCubes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fineMotorFunctionMature)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fineMotorFunctionImmature)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fineMotorFunctionImitate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fineMotorFunctionCopying)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.objectiveAssessmentNotes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tactile)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.auditory)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.visual)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.olfactory)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.gustatory)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.vestibular)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.proprioception)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.alphabet)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.numbers)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.shapes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.colors)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.memoryFunction)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.attention)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.concentration)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.problemSolving)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.writingSkill)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cognitiveProgressNote)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.independent)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.withSupervision)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.maximumAssistance)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.toiletTrained)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.moneyManagement)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.timeConcept)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.foldingClothes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.hangingClothes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.sweepFloor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.makingDrinks)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.prepareSimpleFood)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.usePhone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.occupationRemark)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.temperedTantrum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.manipulative)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.easilyDistracted)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.passive)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cooperative)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.isolation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.reluctant)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.repatitivePrompting)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.verbalPrompting)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.physicalPrompting)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.eyeContactPerson)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.eyeContactObject)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.initiateAnswerQuestion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.verbalRespond)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.voiceClarify)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.facialExpression)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.bodyLanguage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.takingTurn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.sharing)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.stayInGrouping)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.academicPerformance)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.analysisProblem)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.txPlan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.therapistIncharge)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

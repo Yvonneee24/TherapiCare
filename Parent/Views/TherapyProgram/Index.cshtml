@@ -1,0 +1,143 @@
+﻿@model List<TherapyProgram>
+<partial name="_Notification"/>
+<!-- Menu -->
+
+<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+    <div class="app-brand demo">
+        <a asp-controller="Home" asp-action="Index" class="app-brand-link">
+            <span class="app-brand-text demo menu-text fw-bolder ms-2">TherapiCare</span>
+        </a>
+
+        <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+            <i class="bx bx-chevron-left bx-sm align-middle"></i>
+        </a>
+    </div>
+
+    <div class="menu-inner-shadow"></div>
+
+    <ul class="menu-inner py-1">
+        <li class="menu-item ">
+            <a asp-area="Parent" asp-controller="Home" asp-action="Index" class="menu-link">
+                <i class="flex-shrink-0 bx bi bi-house-door-fill me-2"></i>
+                <div data-i18n="Analytics"> Dashboard</div>
+            </a>
+        </li>
+
+        <li class="menu-item">
+            <a asp-area="Parent" asp-controller="Announcements" asp-action="Index" class="menu-link">
+                <i class="flex-shrink-0 bx bi bi-megaphone-fill me-2"></i>
+                <div data-i18n="Analytics"> Announcement</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a asp-area="Parent" asp-controller="Billings" asp-action="Index" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-money"></i>
+                <div data-i18n="Basic">Billings  </div>
+                @if (ViewData["HasPendingBills"] != null && (bool)ViewData["HasPendingBills"])
+                {
+
+                    <span class="navbar-text text-danger">
+
+                        <i class="bi bi-patch-exclamation-fill"></i>
+                    </span>
+                }
+            </a>
+        </li>
+        <li class="menu-item">
+            <a asp-area="Parent" asp-controller="Schedule" asp-action="Index" class="menu-link">
+                <i class="flex-shrink-0 bx bi bi-calendar-event-fill me-2"></i>
+                <div data-i18n="Analytics"> Schedule</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a asp-area="Parent" asp-controller="Student" asp-action="Index" class="menu-link">
+                <i class="flex-shrink-0 bx bi bi-person-square me-2"></i>
+                <div data-i18n="Analytics"> My Children</div> 
+            </a>
+        </li>
+        <li class="menu-item">
+            <a asp-area="Parent" asp-controller="ProgramStudent" asp-action="Index" class="menu-link">
+                <i class="flex-shrink-0 bx bi bi-person-vcard-fill me-2"></i>
+                <div data-i18n="Analytics"> Registered Program</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a asp-area="Parent" asp-controller="Report" asp-action="Index" class="menu-link">
+                <i class="flex-shrink-0 bx bi bi-file-earmark-fill me-2"></i>
+                <div data-i18n="Analytics">Children Report</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a asp-area="Parent" asp-controller="CustServices" asp-action="Index" class="menu-link">
+                <i class="flex-shrink-0 bx bi bi-chat-dots-fill me-2"></i>
+                <div data-i18n="Analytics"> Customer Service</div>
+            </a>
+        </li>
+    </ul>
+</aside>
+<!-- / Menu -->
+<!-- Navbar -->
+
+<nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
+     id="layout-navbar">
+    <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
+        <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+            <i class="bx bx-menu bx-sm"></i>
+        </a>
+    </div>
+
+    <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+        <!-- Search -->
+        @* <div class="navbar-nav align-items-center">
+        <div class="nav-item d-flex align-items-center">
+        <i class="bx bx-search fs-4 lh-0"></i>
+        <input type="text"
+        class="form-control border-0 shadow-none"
+        placeholder="Search..."
+        aria-label="Search..." />
+        </div>
+        </div> *@
+        <!-- /Search -->
+
+        <ul class="navbar-nav flex-row align-items-center ms-auto">
+
+        </ul>
+    </div>
+</nav>
+
+<!-- / Navbar -->
+
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h2 class="fw-bold py-3 mb-2">Program</h2>
+        </div>
+    </div>
+
+    <table class="table table-bordered table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Objective</th>
+                <th>Weekday Price</th>
+                <th>Weekend Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Description</td>
+                    <td>@item.Objective</td>
+                    <td>@item.WeekdayPrice</td>
+                    <td>@item.WeekendPrice</td>
+                    
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<a asp-action="Index" asp-controller="ProgramStudent" class="btn btn-primary mx-2">Back to List</a>

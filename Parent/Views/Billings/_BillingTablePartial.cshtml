@@ -1,0 +1,94 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model IEnumerable<TherapiCareTest.Models.Billing>
+@using TherapiCareTest.Helpers
+@using TherapiCareTest.Data.Enum
+@using System.IO
+
+<br>
+<b>Total Amount: RM @ViewData["TotalAmount"]</b>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Amount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaymentReceipt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Student)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaymentStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TherapyProgram)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Parent)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @if (string.IsNullOrEmpty(item.PaymentReceipt))
+                    {
+                        <span>Not Uploaded</span>
+                    }
+                    else
+                    {
+                        <a href="@Url.Content("~/uploads/" + item.PaymentReceipt)" target="_blank">View Receipt</a>
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Student.Name)
+                </td>
+                <td>
+                    @{
+                        var status = item.PaymentStatus ?? PaymentStatus.PENDING; // Default value if null
+                    }
+                    <span class="@BadgeHelper.GetBadgeClass(status)">@status.ToString()</span>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TherapyProgram.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Parent.Name)
+                </td>
+                <td>
+                    @if (item.PaymentStatus == TherapiCareTest.Data.Enum.PaymentStatus.PAID)
+                    {
+                        <a asp-action="GeneratePdfDetailPaid" asp-route-id="@item.Id" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="View Paid Invoice"><i class="bi bi-eye-fill"></i></a>
+                    }
+                    else
+                    {
+                        <a asp-action="GeneratePdfDetail" asp-route-id="@item.Id" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="View Invoice"><i class="bi bi-eye-fill"></i></a>
+                    }
+                    
+                    @if (item.PaymentStatus == TherapiCareTest.Data.Enum.PaymentStatus.PENDING)
+                    {
+                        <a class="btn btn-secondary btn-sm" asp-action="UploadReceipt" asp-route-billingId="@item.Id" data-toggle="tooltip" data-placement="top" title="Upload Payment"><i class="bi bi-file-earmark-arrow-up-fill"></i></a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

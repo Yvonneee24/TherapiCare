@@ -1,0 +1,1001 @@
+﻿@model IEnumerable<TherapiCareTest.Models.Report>
+
+@{
+    Layout = "~/Views/Shared/_PdfLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Compiled Updates for Current Month - PDF</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            text-align: center; /* Center the content */
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .table {
+            margin: auto; /* Center the table on the page */
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Compiled Updates for Current Month</h1>
+
+    @if (Model == null || !Model.Any())
+    {
+        <p>No reports available for the specified student and date range.</p>
+    }
+    else
+    {
+        @foreach (var report in Model)
+        {
+            <div class="report">
+                <h2>@report.Title</h2>
+                <p><strong>Student Name:</strong> @report.studentName</p>
+                <p><strong>Date:</strong> @report.Date.ToShortDateString()</p>
+                <p><strong>Number of Sessions Attended:</strong> @report.numberOfSessionsAttended</p>
+                <p>
+                    <strong>Treatment:</strong>
+                    @if (report.treatment == "1")
+                    {
+                        <text>Individual Therapy</text>
+                    }
+                    else if (report.treatment == "2")
+                    {
+                        <text>Group Therapy</text>
+                    }
+                    else if (report.treatment == "3")
+                    {
+                        <text>Early Intervention</text>
+                    }
+                    else if (report.treatment == "4")
+                    {
+                        <text>Behaviour Management</text>
+                    }
+                </p>
+                <p>
+                    <strong>Enter By Himself:</strong>
+                    @if (report.enterByHimself == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.enterByHimself == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p>
+                    <strong>Enter With Prompting:</strong>
+                    @if (report.enterWithPrompting == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.enterWithPrompting == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p>
+                    <strong>Difficulties Separate With Parents:</strong>
+                    @if (report.difficultiesSeparateWithParents == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.difficultiesSeparateWithParents == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p>
+                    <strong>With Crying Refuse:</strong>
+                    @if (report.withCryingRefuse == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.withCryingRefuse == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p>
+                    <strong>Greeting With Prompt:</strong>
+                    @if (report.greetingWithPrompt == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.greetingWithPrompt == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p>
+                    <strong>Greeting By Himself:</strong>
+                    @if (report.greetingByHimself == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.greetingByHimself == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p>
+                    <strong>Mute:</strong>
+                    @if (report.mute == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.mute == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p>
+                    <strong>Refuse To Enter:</strong>
+                    @if (report.refuseToEnter == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.refuseToEnter == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p><strong>Subjective Assessment Notes:</strong> @report.subjectiveAssessmentNotes</p>
+
+                <p>
+                    <strong>Range of Motion:</strong>
+                    @if (report.rangeOfMotion == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.rangeOfMotion == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+
+                <p>
+                    <strong>@Html.DisplayNameFor(report => report.muscleTone):</strong>
+                    @if (report.muscleTone == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.muscleTone == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p>
+                    <strong>@Html.DisplayNameFor(report => report.muscleStrength):</strong>
+                    @if (report.muscleStrength == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.muscleStrength == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p>
+                    <strong>@Html.DisplayNameFor(report => report.muscleEndurance):</strong>
+                    @if (report.muscleEndurance == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.muscleEndurance == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p>
+                    <strong>@Html.DisplayNameFor(report => report.jointMobility):</strong>
+                    @if (report.jointMobility == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.jointMobility == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p>
+                    <strong>@Html.DisplayNameFor(report => report.trunkControlBalance):</strong>
+                    @if (report.trunkControlBalance == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.trunkControlBalance == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p>
+                    <strong>@Html.DisplayNameFor(report => report.grossMotorFunctionStanding):</strong>
+                    @if (report.grossMotorFunctionStanding == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.grossMotorFunctionStanding == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p>
+                    <strong>@Html.DisplayNameFor(report => report.grossMotorFunctionCrawling):</strong>
+                    @if (report.grossMotorFunctionCrawling == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.grossMotorFunctionCrawling == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p>
+                    <strong>@Html.DisplayNameFor(report => report.grossMotorFunctionWalking):</strong>
+                    @if (report.grossMotorFunctionWalking == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.grossMotorFunctionWalking == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p>
+                    <strong>@Html.DisplayNameFor(report => report.grossMotorFunctionJumping):</strong>
+                    @if (report.grossMotorFunctionJumping == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.grossMotorFunctionJumping == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p>
+                    <strong>@Html.DisplayNameFor(report => report.grossMotorFunctionBroadJump):</strong>
+                    @if (report.grossMotorFunctionBroadJump == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.grossMotorFunctionBroadJump == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p>
+                    <strong>@Html.DisplayNameFor(report => report.grossMotorFunctionKickBall):</strong>
+                    @if (report.grossMotorFunctionKickBall == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.grossMotorFunctionKickBall == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p>
+                    <strong>@Html.DisplayNameFor(report => report.grossMotorFunctionThrowBall):</strong>
+                    @if (report.grossMotorFunctionThrowBall == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.grossMotorFunctionThrowBall == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p>
+                    <strong>@Html.DisplayNameFor(report => report.fineMotorFunctionGraspRelease):</strong>
+                    @if (report.fineMotorFunctionGraspRelease == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.fineMotorFunctionGraspRelease == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p>
+                    <strong>@Html.DisplayNameFor(report => report.fineMotorFunctionReaching):</strong>
+                    @if (report.fineMotorFunctionReaching == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.fineMotorFunctionReaching == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p>
+                    <strong>@Html.DisplayNameFor(report => report.fineMotorFunctionPutBlock):</strong>
+                    @if (report.fineMotorFunctionPutBlock == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.fineMotorFunctionPutBlock == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p>
+                    <strong>@Html.DisplayNameFor(report => report.fineMotorFunctionScribbles):</strong>
+                    @if (report.fineMotorFunctionScribbles == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.fineMotorFunctionScribbles == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+
+                <p><strong>Tower of ___ cubes:</strong> @report.fineMotorFunctionCubes</p>
+
+                <p>
+                    <strong>@Html.DisplayNameFor(report => report.fineMotorFunctionMature):</strong>
+                    @if (report.fineMotorFunctionMature == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.fineMotorFunctionMature == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p>
+                    <strong>@Html.DisplayNameFor(report => report.fineMotorFunctionImmature):</strong>
+                    @if (report.fineMotorFunctionImmature == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.fineMotorFunctionImmature == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p>
+                    <strong>@Html.DisplayNameFor(report => report.fineMotorFunctionImitate):</strong>
+                    @if (report.fineMotorFunctionImitate == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.fineMotorFunctionImitate == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p>
+                    <strong>@Html.DisplayNameFor(report => report.fineMotorFunctionCopying):</strong>
+                    @if (report.fineMotorFunctionCopying == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.fineMotorFunctionCopying == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p><strong>Occupation Remark:</strong> @report.objectiveAssessmentNotes</p>
+
+
+                <p>
+                    <strong>Tactile:</strong>
+                    @if (report.tactile == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.tactile == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p>
+                    <strong>Auditory:</strong>
+                    @if (report.auditory == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.auditory == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p>
+                    <strong>Visual:</strong>
+                    @if (report.visual == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.visual == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p>
+                    <strong>Olfactory:</strong>
+                    @if (report.olfactory == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.olfactory == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p>
+                    <strong>Gustatory:</strong>
+                    @if (report.gustatory == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.gustatory == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p>
+                    <strong>Vestibular:</strong>
+                    @if (report.vestibular == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.vestibular == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p>
+                    <strong>Proprioception:</strong>
+                    @if (report.proprioception == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.proprioception == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p>
+                    <strong>Alphabet:</strong>
+                    @if (report.alphabet == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.alphabet == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p>
+                    <strong>Numbers:</strong>
+                    @if (report.numbers == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.numbers == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p>
+                    <strong>Shapes:</strong>
+                    @if (report.shapes == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.shapes == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p>
+                    <strong>Colors:</strong>
+                    @if (report.colors == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.colors == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p>
+                    <strong>Memory Function:</strong>
+                    @if (report.memoryFunction == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.memoryFunction == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p>
+                    <strong>Attention:</strong>
+                    @if (report.attention == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.attention == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p>
+                    <strong>Concentration:</strong>
+                    @if (report.concentration == 1)
+                    {
+                        <text>Good</text>
+                    }
+                    else if (report.concentration == 2)
+                    {
+                        <text>Fair</text>
+                    }
+                    else if (report.concentration == 3)
+                    {
+                        <text>Poor</text>
+                    }
+                </p>
+                <p>
+                    <strong>Problem Solving:</strong>
+                    @if (report.problemSolving == 1)
+                    {
+                        <text>Good</text>
+                    }
+                    else if (report.problemSolving == 2)
+                    {
+                        <text>Fair</text>
+                    }
+                    else if (report.problemSolving == 3)
+                    {
+                        <text>Poor</text>
+                    }
+                </p>
+                <p>
+                    <strong>Writing Skill:</strong>
+                    @if (report.writingSkill == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.writingSkill == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p><strong>Subjective Assessment Notes:</strong> @report.cognitiveProgressNote</p>
+
+
+                <h3 class="subsection-heading">5.1 Occupational Performance</h3>
+
+                <h4 class="subsection-heading">Activity Daily Living (ADL)</h4>
+
+                <p>
+                    <strong>Independent:</strong>
+                    @if (report.independent == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.independent == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p>
+                    <strong>With Supervision:</strong>
+                    @if (report.withSupervision == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.withSupervision == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p>
+                    <strong>Maximum Assistance:</strong>
+                    @if (report.maximumAssistance == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.maximumAssistance == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p>
+                    <strong>Toilet Trained:</strong>
+                    @if (report.toiletTrained == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.toiletTrained == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p>
+                    <strong>Money Management:</strong>
+                    @if (report.moneyManagement == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.moneyManagement == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p>
+                    <strong>Time Concept:</strong>
+                    @if (report.timeConcept == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.timeConcept == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p>
+                    <strong>Folding Clothes:</strong>
+                    @if (report.foldingClothes == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.foldingClothes == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p>
+                    <strong>Hanging Clothes:</strong>
+                    @if (report.hangingClothes == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.hangingClothes == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p>
+                    <strong>Sweep Floor:</strong>
+                    @if (report.sweepFloor == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.sweepFloor == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p>
+                    <strong>Making Drinks:</strong>
+                    @if (report.makingDrinks == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.makingDrinks == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p>
+                    <strong>Prepare Simple Food:</strong>
+                    @if (report.prepareSimpleFood == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.prepareSimpleFood == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p>
+                    <strong>Use Phone:</strong>
+                    @if (report.usePhone == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.usePhone == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p><strong>Occupation Remark:</strong> @report.occupationRemark</p>
+
+                <h3 class="section-heading">6.1 Emotional Regulation Skills</h3>
+
+                <h4 class="subsection-heading">Behaviour</h4>
+
+                <p>
+                    <strong>@Html.DisplayNameFor(report => report.temperedTantrum):</strong>
+                    @if (report.temperedTantrum == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.temperedTantrum == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p>
+                    <strong>@Html.DisplayNameFor(report => report.manipulative):</strong>
+                    @if (report.manipulative == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.manipulative == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p>
+                    <strong>@Html.DisplayNameFor(report => report.easilyDistracted):</strong>
+                    @if (report.easilyDistracted == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.easilyDistracted == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p>
+                    <strong>@Html.DisplayNameFor(report => report.passive):</strong>
+                    @if (report.passive == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.passive == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p>
+                    <strong>@Html.DisplayNameFor(report => report.cooperative):</strong>
+                    @if (report.cooperative == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.cooperative == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p>
+                    <strong>@Html.DisplayNameFor(report => report.isolation):</strong>
+                    @if (report.isolation == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.isolation == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p>
+                    <strong>@Html.DisplayNameFor(report => report.reluctant):</strong>
+                    @if (report.reluctant == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.reluctant == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+
+                <h3 class="section-heading">7.1 Communication & Social Skills</h3>
+
+                <h4 class="subsection-heading">Following Instruction</h4>
+
+                <p>
+                    <strong>@Html.DisplayNameFor(report => report.repatitivePrompting):</strong>
+                    @if (report.repatitivePrompting == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.repatitivePrompting == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p>
+                    <strong>@Html.DisplayNameFor(report => report.verbalPrompting):</strong>
+                    @if (report.verbalPrompting == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.verbalPrompting == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p>
+                    <strong>@Html.DisplayNameFor(report => report.physicalPrompting):</strong>
+                    @if (report.physicalPrompting == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.physicalPrompting == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+
+                <p>
+                    <strong>@Html.DisplayNameFor(report => report.eyeContactPerson):</strong>
+                    @if (report.eyeContactPerson == 1)
+                    {
+                        <text>Good</text>
+                    }
+                    else if (report.eyeContactPerson == 2)
+                    {
+                        <text>Fair</text>
+                    }
+                    else if (report.eyeContactPerson == 3)
+                    {
+                        <text>Poor</text>
+                    }
+                </p>
+                <p>
+                    <strong>@Html.DisplayNameFor(report => report.eyeContactObject):</strong>
+                    @if (report.eyeContactObject == 1)
+                    {
+                        <text>Good</text>
+                    }
+                    else if (report.eyeContactObject == 2)
+                    {
+                        <text>Fair</text>
+                    }
+                    else if (report.eyeContactObject == 3)
+                    {
+                        <text>Poor</text>
+                    }
+                </p>
+                <p>
+                    <strong>@Html.DisplayNameFor(report => report.initiateAnswerQuestion):</strong>
+                    @if (report.initiateAnswerQuestion == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.initiateAnswerQuestion == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p>
+                    <strong>@Html.DisplayNameFor(report => report.verbalRespond):</strong>
+                    @if (report.verbalRespond == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.verbalRespond == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p>
+                    <strong>@Html.DisplayNameFor(report => report.voiceClarify):</strong>
+                    @if (report.voiceClarify == 1)
+                    {
+                        <text>Clear</text>
+                    }
+                    else if (report.voiceClarify == 2)
+                    {
+                        <text>Slurred</text>
+                    }
+                    else if (report.voiceClarify == 3)
+                    {
+                        <text>Imitate But Vowel Sound</text>
+                    }
+                    else if (report.voiceClarify == 4)
+                    {
+                        <text>No Speech</text>
+                    }
+                </p>
+                <p>
+                    <strong>@Html.DisplayNameFor(report => report.facialExpression):</strong>
+                    @if (report.facialExpression == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.facialExpression == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p>
+                    <strong>@Html.DisplayNameFor(report => report.bodyLanguage):</strong>
+                    @if (report.bodyLanguage == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.bodyLanguage == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p>
+                    <strong>@Html.DisplayNameFor(report => report.takingTurn):</strong>
+                    @if (report.takingTurn == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.takingTurn == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p>
+                    <strong>@Html.DisplayNameFor(report => report.sharing):</strong>
+                    @if (report.sharing == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.sharing == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p>
+                    <strong>@Html.DisplayNameFor(report => report.stayInGrouping):</strong>
+                    @if (report.stayInGrouping == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (report.stayInGrouping == 2)
+                    {
+                        <text>No</text>
+                    }
+                </p>
+                <p>
+                    <strong>@Html.DisplayNameFor(report => report.academicPerformance):</strong>
+                    @if (report.academicPerformance == 1)
+                    {
+                        <text>Good</text>
+                    }
+                    else if (report.academicPerformance == 2)
+                    {
+                        <text>Average</text>
+                    }
+                    else if (report.academicPerformance == 3)
+                    {
+                        <text>Fair</text>
+                    }
+                    else if (report.academicPerformance == 4)
+                    {
+                        <text>Poor</text>
+                    }
+                    else if (report.academicPerformance == 5)
+                    {
+                        <text>Unable to Follow</text>
+                    }
+                </p>
+
+                <p><strong>A - Analysis Problem, Short Term, Long Term Goal:</strong> @report.analysisProblem</p>
+                <p><strong>P - Tx Done, Tx Plan:</strong> @report.txPlan</p>
+                <p><strong>Therapist Incharge:</strong> @report.therapistIncharge</p>
+            </div>
+        }
+    }
+</body>
+</html>

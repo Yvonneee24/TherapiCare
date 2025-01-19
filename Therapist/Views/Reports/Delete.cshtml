@@ -1,0 +1,579 @@
+﻿@model TherapiCareTest.Models.Report
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Report</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.staffId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.staffId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.studentName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.studentName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.numberOfSessionsAttended)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.numberOfSessionsAttended)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.treatment)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.treatment)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.reportStatus)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.reportStatus)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.enterByHimself)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.enterByHimself)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.enterWithPrompting)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.enterWithPrompting)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.difficultiesSeparateWithParents)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.difficultiesSeparateWithParents)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.withCryingRefuse)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.withCryingRefuse)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.greetingWithPrompt)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.greetingWithPrompt)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.greetingByHimself)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.greetingByHimself)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.mute)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.mute)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.refuseToEnter)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.refuseToEnter)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.subjectiveAssessmentNotes)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.subjectiveAssessmentNotes)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.rangeOfMotion)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.rangeOfMotion)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.muscleTone)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.muscleTone)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.muscleStrength)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.muscleStrength)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.muscleEndurance)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.muscleEndurance)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.jointMobility)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.jointMobility)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.trunkControlBalance)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.trunkControlBalance)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.grossMotorFunctionStanding)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.grossMotorFunctionStanding)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.grossMotorFunctionCrawling)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.grossMotorFunctionCrawling)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.grossMotorFunctionWalking)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.grossMotorFunctionWalking)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.grossMotorFunctionJumping)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.grossMotorFunctionJumping)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.grossMotorFunctionBroadJump)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.grossMotorFunctionBroadJump)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.grossMotorFunctionKickBall)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.grossMotorFunctionKickBall)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.grossMotorFunctionThrowBall)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.grossMotorFunctionThrowBall)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.fineMotorFunctionGraspRelease)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.fineMotorFunctionGraspRelease)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.fineMotorFunctionReaching)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.fineMotorFunctionReaching)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.fineMotorFunctionPutBlock)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.fineMotorFunctionPutBlock)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.fineMotorFunctionScribbles)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.fineMotorFunctionScribbles)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.fineMotorFunctionCubes)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.fineMotorFunctionCubes)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.fineMotorFunctionMature)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.fineMotorFunctionMature)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.fineMotorFunctionImmature)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.fineMotorFunctionImmature)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.fineMotorFunctionImitate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.fineMotorFunctionImitate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.fineMotorFunctionCopying)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.fineMotorFunctionCopying)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.objectiveAssessmentNotes)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.objectiveAssessmentNotes)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.tactile)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.tactile)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.auditory)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.auditory)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.visual)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.visual)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.olfactory)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.olfactory)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.gustatory)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.gustatory)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.vestibular)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.vestibular)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.proprioception)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.proprioception)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.alphabet)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.alphabet)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.numbers)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.numbers)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.shapes)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.shapes)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.colors)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.colors)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.memoryFunction)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.memoryFunction)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.attention)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.attention)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.concentration)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.concentration)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.problemSolving)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.problemSolving)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.writingSkill)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.writingSkill)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.cognitiveProgressNote)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.cognitiveProgressNote)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.independent)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.independent)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.withSupervision)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.withSupervision)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.maximumAssistance)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.maximumAssistance)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.toiletTrained)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.toiletTrained)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.moneyManagement)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.moneyManagement)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.timeConcept)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.timeConcept)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.foldingClothes)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.foldingClothes)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.hangingClothes)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.hangingClothes)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.sweepFloor)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.sweepFloor)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.makingDrinks)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.makingDrinks)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.prepareSimpleFood)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.prepareSimpleFood)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.usePhone)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.usePhone)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.occupationRemark)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.occupationRemark)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.temperedTantrum)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.temperedTantrum)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.manipulative)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.manipulative)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.easilyDistracted)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.easilyDistracted)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.passive)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.passive)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.cooperative)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.cooperative)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.isolation)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.isolation)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.reluctant)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.reluctant)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.repatitivePrompting)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.repatitivePrompting)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.verbalPrompting)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.verbalPrompting)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.physicalPrompting)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.physicalPrompting)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.eyeContactPerson)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.eyeContactPerson)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.eyeContactObject)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.eyeContactObject)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.initiateAnswerQuestion)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.initiateAnswerQuestion)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.verbalRespond)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.verbalRespond)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.voiceClarify)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.voiceClarify)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.facialExpression)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.facialExpression)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.bodyLanguage)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.bodyLanguage)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.takingTurn)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.takingTurn)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.sharing)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.sharing)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.stayInGrouping)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.stayInGrouping)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.academicPerformance)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.academicPerformance)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.analysisProblem)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.analysisProblem)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.txPlan)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.txPlan)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.therapistIncharge)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.therapistIncharge)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

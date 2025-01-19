@@ -1,0 +1,1047 @@
+﻿@model TherapiCareTest.Models.Report
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<style>
+    .custom-radio {
+        transform: scale(1.2); /* Increase the size of the radio buttons */
+    }
+
+    .radio-group {
+        display: flex; /* Align radio buttons horizontally */
+        align-items: center; /* Center items vertically */
+    }
+
+    .form-group {
+        margin-bottom: 15px; /* Add some bottom margin for spacing */
+    }
+
+    .form-check {
+        display: inline-flex; /* Keep radio buttons inline */
+        align-items: center; /* Center items vertically */
+        margin-right: 20px; /* Adjust spacing between radio button groups */
+    }
+
+    .form-check-input {
+        margin-right: 5px; /* Adjust spacing between radio button and label */
+    }
+
+    .control-label {
+        font-size: 16px; /* Increase label font size */
+        margin-bottom: 8px; /* Add some bottom margin for spacing */
+        display: block; /* Ensure the label is on its own line */
+    }
+
+    .radio-spacing {
+        margin-right: 20px; /* Adjust spacing between Yes and No radio buttons */
+    }
+
+    .custom-radio.form-check-inline {
+        display: inline-block;
+        margin-right: 10px;
+    }
+</style>
+
+<h1>Edit Report</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="staffId" class="control-label"></label>
+                <input asp-for="staffId" class="form-control" />
+                <span asp-validation-for="staffId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="studentName" class="control-label">Student Name</label>
+                <input asp-for="studentName" class="form-control" value="@ViewBag.StudentName" disabled />
+                <input type="hidden" asp-for="studentName" value="@ViewBag.StudentName" />
+                <span asp-validation-for="studentName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="hidden" asp-for="studentId" value="@ViewBag.StudentId" />
+                <span asp-validation-for="studentId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Date" class="control-label"></label>
+                <input asp-for="Date" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="numberOfSessionsAttended" class="control-label"></label>
+                <input asp-for="numberOfSessionsAttended" class="form-control" />
+                <span asp-validation-for="numberOfSessionsAttended" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="treatment" class="control-label"></label>
+                <select asp-for="treatment" class="form-control">
+                    <option value="" disabled selected>Select Treatment Method</option>
+                    <option value="1">Individual Therapy</option>
+                    <option value="2">Group Therapy</option>
+                    <option value="3">Early Intervention</option>
+                    <option value="4">Behaviour Management</option>
+
+                </select>
+                <span asp-validation-for="treatment" class="text-danger"></span>
+            </div>
+
+            <h3 class="section-heading">S - Subjective Assessment</h3>
+
+            <div class="form-group">
+                <label asp-for="enterByHimself" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="enterByHimself" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="enterByHimself" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="enterByHimself" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="enterWithPrompting" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="enterWithPrompting" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="enterWithPrompting" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="enterWithPrompting" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="difficultiesSeparateWithParents" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="difficultiesSeparateWithParents" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="difficultiesSeparateWithParents" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="difficultiesSeparateWithParents" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="withCryingRefuse" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="withCryingRefuse" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="withCryingRefuse" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="withCryingRefuse" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="greetingWithPrompt" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="greetingWithPrompt" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="greetingWithPrompt" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="greetingWithPrompt" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="greetingByHimself" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="greetingByHimself" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="greetingByHimself" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="greetingByHimself" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="mute" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="mute" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="mute" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="mute" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="refuseToEnter" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="refuseToEnter" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="refuseToEnter" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="refuseToEnter" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="subjectiveAssessmentNotes" class="control-label"></label>
+                <input asp-for="subjectiveAssessmentNotes" class="form-control" />
+                <span asp-validation-for="subjectiveAssessmentNotes" class="text-danger"></span>
+            </div>
+
+            <h3 class="section-heading">O - Objective Assessment</h3>
+
+            <h4 class="subsection-heading">2.1 Motor & Praxis Skills</h4>
+
+            <div class="form-group">
+                <label asp-for="rangeOfMotion" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="rangeOfMotion" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="rangeOfMotion" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="rangeOfMotion" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="muscleTone" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="muscleTone" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="muscleTone" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="muscleTone" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="muscleStrength" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="muscleStrength" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="muscleStrength" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="muscleStrength" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="muscleEndurance" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="muscleEndurance" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="muscleEndurance" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="muscleEndurance" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="jointMobility" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="jointMobility" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="jointMobility" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="jointMobility" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="trunkControlBalance" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="trunkControlBalance" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="trunkControlBalance" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="trunkControlBalance" class="text-danger"></span>
+            </div>
+
+            <h4 class="subsection-heading">Gross Motor Function</h4>
+
+            <div class="form-group">
+                <label asp-for="grossMotorFunctionStanding" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="grossMotorFunctionStanding" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="grossMotorFunctionStanding" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="grossMotorFunctionStanding" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="grossMotorFunctionCrawling" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="grossMotorFunctionCrawling" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="grossMotorFunctionCrawling" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="grossMotorFunctionCrawling" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="grossMotorFunctionWalking" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="grossMotorFunctionWalking" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="grossMotorFunctionWalking" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="grossMotorFunctionWalking" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="grossMotorFunctionJumping" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="grossMotorFunctionJumping" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="grossMotorFunctionJumping" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="grossMotorFunctionJumping" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="grossMotorFunctionBroadJump" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="grossMotorFunctionBroadJump" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="grossMotorFunctionBroadJump" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="grossMotorFunctionBroadJump" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="grossMotorFunctionKickBall" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="grossMotorFunctionKickBall" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="grossMotorFunctionKickBall" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="grossMotorFunctionKickBall" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="grossMotorFunctionThrowBall" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="grossMotorFunctionThrowBall" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="grossMotorFunctionThrowBall" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="grossMotorFunctionThrowBall" class="text-danger"></span>
+            </div>
+
+
+            <h4 class="subsection-heading">Fine Motor Function</h4>
+
+            <div class="form-group">
+                <label asp-for="fineMotorFunctionGraspRelease" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="fineMotorFunctionGraspRelease" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="fineMotorFunctionGraspRelease" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="fineMotorFunctionGraspRelease" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="fineMotorFunctionReaching" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="fineMotorFunctionReaching" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="fineMotorFunctionReaching" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="fineMotorFunctionReaching" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="fineMotorFunctionPutBlock" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="fineMotorFunctionPutBlock" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="fineMotorFunctionPutBlock" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="fineMotorFunctionPutBlock" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="fineMotorFunctionScribbles" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="fineMotorFunctionScribbles" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="fineMotorFunctionScribbles" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="fineMotorFunctionScribbles" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="fineMotorFunctionCubes" class="control-label"></label>
+                <input asp-for="fineMotorFunctionCubes" class="form-control" />
+                <span asp-validation-for="fineMotorFunctionCubes" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="fineMotorFunctionMature" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="fineMotorFunctionMature" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="fineMotorFunctionMature" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="fineMotorFunctionMature" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="fineMotorFunctionImmature" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="fineMotorFunctionImmature" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="fineMotorFunctionImmature" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="fineMotorFunctionImmature" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="fineMotorFunctionImitate" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="fineMotorFunctionImitate" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="fineMotorFunctionImitate" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="fineMotorFunctionImitate" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="fineMotorFunctionCopying" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="fineMotorFunctionCopying" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="fineMotorFunctionCopying" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="fineMotorFunctionCopying" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="objectiveAssessmentNotes" class="control-label"></label>
+                <input asp-for="objectiveAssessmentNotes" class="form-control" />
+                <span asp-validation-for="objectiveAssessmentNotes" class="text-danger"></span>
+            </div>
+
+
+            <h3 class="section-heading">3.1 Sensory Regulation Skills</h3>
+
+            <div class="form-group">
+                <label asp-for="tactile" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="tactile" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="tactile" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="tactile" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="auditory" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="auditory" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="auditory" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="auditory" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="visual" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="visual" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="visual" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="visual" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="olfactory" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="olfactory" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="olfactory" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="olfactory" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="gustatory" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="gustatory" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="gustatory" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="gustatory" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="vestibular" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="vestibular" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="vestibular" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="vestibular" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="proprioception" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="proprioception" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="proprioception" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="proprioception" class="text-danger"></span>
+            </div>
+
+
+            <h4 class="subsection-heading">4.1 Cognitive Regulation Skill</h4>
+
+            <h4 class="subsection-heading">Basic Concept</h4>
+
+            <div class="form-group">
+                <label asp-for="alphabet" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="alphabet" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="alphabet" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="alphabet" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="numbers" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="numbers" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="numbers" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="numbers" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="shapes" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="shapes" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="shapes" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="shapes" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="colors" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="colors" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="colors" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="colors" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="memoryFunction" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="memoryFunction" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="memoryFunction" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="memoryFunction" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="attention" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="attention" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="attention" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="attention" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="concentration" class="control-label"></label>
+                <select asp-for="concentration" class="form-control">
+                    <option value="" disabled selected>Select</option>
+                    <option value="1">Good</option>
+                    <option value="2">Fair</option>
+                    <option value="3">Poor</option>
+                </select>
+                <span asp-validation-for="concentration" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="problemSolving" class="control-label"></label>
+                <select asp-for="problemSolving" class="form-control">
+                    <option value="" disabled selected>Select</option>
+                    <option value="1">Good</option>
+                    <option value="2">Fair</option>
+                    <option value="3">Poor</option>
+
+                </select>
+                <span asp-validation-for="problemSolving" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="writingSkill" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="writingSkill" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="writingSkill" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="writingSkill" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="cognitiveProgressNote" class="control-label"></label>
+                <input asp-for="cognitiveProgressNote" class="form-control" />
+                <span asp-validation-for="cognitiveProgressNote" class="text-danger"></span>
+            </div>
+
+            <h4 class="subsection-heading"> 5.1 Occupational Performance</h4>
+
+            <h4 class="subsection-heading">Activity Daily Living (ADL)</h4>
+            <div class="form-group">
+                <label asp-for="independent" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="independent" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="independent" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="independent" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="withSupervision" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="withSupervision" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="withSupervision" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="withSupervision" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="maximumAssistance" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="maximumAssistance" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="maximumAssistance" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="maximumAssistance" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="toiletTrained" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="toiletTrained" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="toiletTrained" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="toiletTrained" class="text-danger"></span>
+            </div>
+
+            <h4 class="subsection-heading">Instrumental Activity Daily Living (IADL)</h4>
+            <div class="form-group">
+                <label asp-for="moneyManagement" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="moneyManagement" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="moneyManagement" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="moneyManagement" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="timeConcept" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="timeConcept" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="timeConcept" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="timeConcept" class="text-danger"></span>
+            </div>
+
+            <h4 class="subsection-heading">Simple Household Activities</h4>
+            <div class="form-group">
+                <label asp-for="foldingClothes" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="foldingClothes" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="foldingClothes" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="foldingClothes" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="hangingClothes" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="hangingClothes" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="hangingClothes" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="hangingClothes" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="sweepFloor" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="sweepFloor" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="sweepFloor" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="sweepFloor" class="text-danger"></span>
+            </div>
+
+            <h4 class="subsection-heading">Simple Domestic Activities</h4>
+            <div class="form-group">
+                <label asp-for="makingDrinks" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="makingDrinks" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="makingDrinks" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="makingDrinks" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="prepareSimpleFood" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="prepareSimpleFood" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="prepareSimpleFood" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="prepareSimpleFood" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="usePhone" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="usePhone" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="usePhone" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="usePhone" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="occupationRemark" class="control-label"></label>
+                <input asp-for="occupationRemark" class="form-control" />
+                <span asp-validation-for="occupationRemark" class="text-danger"></span>
+            </div>
+
+            <h3 class="section-heading"> 6.1 Emotional Regulation Skills</h3>
+
+            <h4 class="subsection-heading">Behaviour</h4>
+
+            <div class="form-group">
+                <label asp-for="temperedTantrum" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="temperedTantrum" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="temperedTantrum" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="temperedTantrum" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="manipulative" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="manipulative" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="manipulative" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="manipulative" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="easilyDistracted" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="easilyDistracted" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="easilyDistracted" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="easilyDistracted" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="passive" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="passive" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="passive" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="passive" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="cooperative" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="cooperative" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="cooperative" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="cooperative" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="isolation" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="isolation" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="isolation" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="isolation" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="reluctant" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="reluctant" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="reluctant" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="reluctant" class="text-danger"></span>
+            </div>
+
+            <h3 class="section-heading">7.1 Communication & Social Skills</h3>
+
+            <h4 class="subsection-heading">Following Instruction</h4>
+            <div class="form-group">
+                <label asp-for="repatitivePrompting" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="repatitivePrompting" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="repatitivePrompting" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="repatitivePrompting" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="verbalPrompting" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="verbalPrompting" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="verbalPrompting" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="verbalPrompting" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="physicalPrompting" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="physicalPrompting" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="physicalPrompting" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="physicalPrompting" class="text-danger"></span>
+            </div>
+
+            <h4 class="subsection-heading">Eye Contact</h4>
+            <div class="form-group">
+                <label asp-for="eyeContactPerson" class="control-label"></label>
+                <select asp-for="eyeContactPerson" class="form-control">
+                    <option value="" disabled selected>Select</option>
+                    <option value="1">Good</option>
+                    <option value="2">Fair</option>
+                    <option value="3">Poor</option>
+
+                </select>
+                <span asp-validation-for="eyeContactPerson" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="eyeContactObject" class="control-label"></label>
+                <select asp-for="eyeContactObject" class="form-control">
+                    <option value="" disabled selected>Select</option>
+                    <option value="1">Good</option>
+                    <option value="2">Fair</option>
+                    <option value="3">Poor</option>
+
+                </select>
+                <span asp-validation-for="eyeContactObject" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="initiateAnswerQuestion" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="initiateAnswerQuestion" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="initiateAnswerQuestion" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="initiateAnswerQuestion" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="verbalRespond" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="verbalRespond" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="verbalRespond" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="verbalRespond" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="voiceClarify" class="control-label"></label>
+                <select asp-for="voiceClarify" class="form-control">
+                    <option value="" disabled selected>Select</option>
+                    <option value="1">Clear</option>
+                    <option value="2">Slurred</option>
+                    <option value="3">Imitate But Vowel Sound</option>
+                    <option value="4">No Speech</option>
+                </select>
+                <span asp-validation-for="voiceClarify" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="facialExpression" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="facialExpression" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="facialExpression" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="facialExpression" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="bodyLanguage" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="bodyLanguage" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="bodyLanguage" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="bodyLanguage" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="takingTurn" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="takingTurn" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="takingTurn" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="takingTurn" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="sharing" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="sharing" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="sharing" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="sharing" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="stayInGrouping" class="control-label"></label>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="stayInGrouping" value="1" class="form-check-input" /> Yes
+                </div>
+                <div class="custom-radio form-check form-check-inline">
+                    <input type="radio" asp-for="stayInGrouping" value="2" class="form-check-input" /> No
+                </div>
+                <span asp-validation-for="stayInGrouping" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="academicPerformance" class="control-label"></label>
+                <select asp-for="academicPerformance" class="form-control">
+                    <option value="" disabled selected>Select</option>
+                    <option value="1">Good</option>
+                    <option value="2">Average</option>
+                    <option value="3">Fair</option>
+                    <option value="4">Poor</option>
+                    <option value="5">Unable to Follow</option>
+                </select>
+                <span asp-validation-for="academicPerformance" class="text-danger"></span>
+            </div>
+
+            @*             <h3 class="section-heading">A - Analysis Problem, Short Term, Long Term Goal</h3>
+            *@
+            <div class="form-group">
+                <label asp-for="analysisProblem" class="control-label"></label>
+                <input asp-for="analysisProblem" class="form-control" />
+                <span asp-validation-for="analysisProblem" class="text-danger"></span>
+            </div>
+
+            @*             <h4 class="subsection-heading">P - Tx Done, Tx Plan</h4>
+            *@
+            <div class="form-group">
+                <label asp-for="txPlan" class="control-label"></label>
+                <input asp-for="txPlan" class="form-control" />
+                <span asp-validation-for="txPlan" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="therapistIncharge" class="control-label"></label>
+                <input asp-for="therapistIncharge" class="form-control" />
+                <span asp-validation-for="therapistIncharge" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

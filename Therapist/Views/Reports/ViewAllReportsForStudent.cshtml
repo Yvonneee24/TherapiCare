@@ -1,0 +1,100 @@
+﻿@model IEnumerable<TherapiCareTest.Models.Report>
+
+<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+    <div class="app-brand demo">
+        <a asp-controller="CustServices" asp-action="Index" class="app-brand-link">
+            <span class="app-brand-text demo menu-text fw-bolder ms-2">TherapiCare</span>
+        </a>
+
+        <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+            <i class="bx bx-chevron-left bx-sm align-middle"></i>
+        </a>
+    </div>
+
+    <div class="menu-inner-shadow"></div>
+
+    <ul class="menu-inner py-1">
+        <!-- Dashboard -->
+        <li class="menu-item">
+            <a asp-area="Therapist" asp-controller="Home" asp-action="Index" class="menu-link">
+                <i class="flex-shrink-0 bx bi bi-calendar-check me-2"></i>
+                <div data-i18n="Analytics"> My Slots</div>
+            </a>
+        </li>
+        <li class="menu-item ">
+            <a asp-area="Therapist" asp-controller="TherapistList" asp-action="ListOfStudent" class="menu-link">
+                <i class="flex-shrink-0 bx bx bx-collection me-2"></i>
+                <div data-i18n="Analytics"> Student List</div>
+            </a>
+        </li>
+
+
+    </ul>
+</aside>
+
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h2 class="fw-bold py-3 mb-2">All Reports</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-action="CompiledUpdates" asp-controller="Reports" asp-route-studentId="@Model.FirstOrDefault()?.Id" class="btn btn-success">Compile Updates for Current Month</a>
+        </div>
+    </div>
+
+
+    <table class="table table-bordered table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>Report Title</th>
+                <th>Date</th>
+                <th>Number of Sessions Attended</th>
+                <th>Treatment</th>
+                <th>Status</th>
+                <th>Actions</th>
+        </thead>
+        <tbody>
+            @foreach (var report in Model)
+            {
+                <tr>
+                    <td>@report.Title</td>
+                    <td>@report.Date</td>
+                    <td>@report.numberOfSessionsAttended</td>
+                    <td>
+                        @if (report.treatment == "1")
+                        {
+                            <text>Individual Therapy</text>
+                        }
+                        else if (report.treatment == "2")
+                        {
+                            <text>Group Therapy</text>
+                        }
+                        else if (report.treatment == "3")
+                        {
+                            <text>Early Intervention</text>
+                        }
+                        else if (report.treatment == "4")
+                        {
+                            <text>Behaviour Management</text>
+                        }
+                    <td>
+                            @if (report.reportStatus == "Pending")
+                            {
+                            <span class="badge bg-label-warning">@report.reportStatus</span>
+                            }
+                            else if (report.reportStatus == "Approved")
+                            {
+                            <span class="badge bg-label-success">@report.reportStatus</span>
+                            }
+                            else if (report.reportStatus == "Rejected")
+                            {
+                            <span class="badge bg-label-danger">@report.reportStatus</span>
+                            }
+                    </td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@report.Id" class="btn btn-info">View</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>

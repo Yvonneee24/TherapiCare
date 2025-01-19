@@ -1,0 +1,197 @@
+﻿@model IEnumerable<TherapiCareTest.Models.Announcement>
+
+<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+    <div class="app-brand demo">
+        <a asp-controller="Home" asp-action="Index" class="app-brand-link">
+            <span class="app-brand-text demo menu-text fw-bolder ms-2">TherapiCare</span>
+        </a>
+
+        <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+            <i class="bx bx-chevron-left bx-sm align-middle"></i>
+        </a>
+    </div>
+
+    <div class="menu-inner-shadow"></div>
+
+    <ul class="menu-inner py-1">
+        <li class="menu-item ">
+            <a asp-area="Parent" asp-controller="Home" asp-action="Index" class="menu-link">
+                <i class="flex-shrink-0 bx bi bi-house-door-fill me-2"></i>
+                <div data-i18n="Analytics"> Dashboard</div>
+            </a>
+        </li>
+
+        <li class="menu-item active">
+            <a asp-area="Parent" asp-controller="Announcements" asp-action="Index" class="menu-link">
+                <i class="flex-shrink-0 bx bi bi-megaphone-fill me-2"></i>
+                <div data-i18n="Analytics"> Announcement</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a asp-area="Parent" asp-controller="Billings" asp-action="Index" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-money"></i>
+                <div data-i18n="Basic">Billings  </div>
+                @if (ViewData["HasPendingBills"] != null && (bool)ViewData["HasPendingBills"])
+                {
+
+                    <span class="navbar-text text-danger">
+
+                        <i class="bi bi-patch-exclamation-fill"></i>
+                    </span>
+                }
+            </a>
+        </li>
+        <li class="menu-item">
+            <a asp-area="Parent" asp-controller="Schedule" asp-action="Index" class="menu-link">
+                <i class="flex-shrink-0 bx bi bi-calendar-event-fill me-2"></i>
+                <div data-i18n="Analytics"> Schedule</div>
+            </a>
+        </li>
+        <li class="menu-item ">
+            <a asp-area="Parent" asp-controller="Student" asp-action="Index" class="menu-link">
+                <i class="flex-shrink-0 bx bi bi-person-square me-2"></i>
+                <div data-i18n="Analytics"> My Children</div>
+            </a>
+        </li>
+        <li class="menu-item ">
+            <a asp-area="Parent" asp-controller="ProgramStudent" asp-action="Index" class="menu-link">
+                <i class="flex-shrink-0 bx bi bi-person-vcard-fill me-2"></i>
+                <div data-i18n="Analytics"> Registered Program</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a asp-area="Parent" asp-controller="Report" asp-action="Index" class="menu-link">
+                <i class="flex-shrink-0 bx bi bi-file-earmark-fill me-2"></i>
+                <div data-i18n="Analytics">Children Report</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a asp-area="Parent" asp-controller="CustServices" asp-action="Index" class="menu-link">
+                <i class="flex-shrink-0 bx bi bi-chat-dots-fill me-2"></i>
+                <div data-i18n="Analytics"> Customer Service</div>
+            </a>
+        </li>
+    </ul>
+</aside>
+
+
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h2 class="fw-bold py-3 mb-2">Announcement</h2>
+        </div>
+    </div>
+
+<style>
+    .custom-table th {
+        text-align: center;
+        vertical-align: middle;
+        font-weight: bold;
+        padding: 10px;
+    }
+
+    .custom-table img {
+        max-width: 200px;
+        border-radius: 10px;
+        border: 2px solid #6f42c1;
+        box-shadow: 0 4px 8px rgba(111, 66, 193, 0.2);
+        padding: 5px;
+    }
+
+    .custom-table .details-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .no-announcements-card {
+        margin-top: 2rem;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+        background: #f8f9fa;
+        border: 1px solid #e1e1e1;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        padding: 2rem;
+    }
+
+        .no-announcements-card h5 {
+            color: #6f42c1;
+            font-size: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .no-announcements-card p {
+            color: #6c757d;
+            margin-top: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .no-announcements-card i {
+            font-size: 3rem;
+            color: #6f42c1;
+        }
+</style>
+
+@if (!Model.Any(a => !a.IsHidden))
+{
+    <div class="no-announcements-card">
+        <i class="bi bi-info-circle-fill"></i>
+        <h5>No Announcements Available</h5>
+        <p>There are currently no announcements to display. Please check back later for updates.</p>
+    </div>
+}
+else
+{
+    <table class="table table-bordered table-striped custom-table">
+        <thead>
+            <tr>
+                <th style="width: 15%;">
+                    @Html.DisplayNameFor(model => model.First().a_date)
+                </th>
+                <th style="width: 25%;">
+                    @Html.DisplayNameFor(model => model.First().a_title)
+                </th>
+                <th style="width: 35%;">
+                    @Html.DisplayNameFor(model => model.First().a_description)
+                </th>
+                <th style="width: 15%;">
+                    @Html.DisplayNameFor(model => model.First().a_image)
+                </th>
+                <th style="width: 10%;"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Where(a => !a.IsHidden).OrderByDescending(a => !a.IsViewed))
+            {
+                bool isNewAnnouncement = !item.IsViewed && (DateTime.Now - item.a_date).TotalDays <= 7;
+
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.a_date)
+                    </td>
+                    <td>
+                        @if (isNewAnnouncement)
+                        {
+                            <span class="badge badge-pill bg-label-danger">New</span>
+                        }
+                        @Html.DisplayFor(modelItem => item.a_title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.a_description)
+                    </td>
+                    <td>
+                        <img src="@item.a_image" class="img-fluid" />
+                    </td>
+                    <td class="details-btn">
+                        <a asp-controller="Announcements" asp-action="Details" asp-route-id="@item.a_id" class="btn btn-primary mx-2" onclick="markAsViewed(@item.a_id)">
+                            <i class="bi bi-card-list"></i> Details
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

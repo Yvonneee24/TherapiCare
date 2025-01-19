@@ -1,0 +1,228 @@
+﻿@using TherapiCareTest.Data.Enum
+@model TherapiCareTest.Models.Student
+
+<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+    <div class="app-brand demo">
+        <a asp-controller="Home" asp-action="Index" class="app-brand-link">
+            <span class="app-brand-text demo menu-text fw-bolder ms-2">TherapiCare</span>
+        </a>
+
+        <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+            <i class="bx bx-chevron-left bx-sm align-middle"></i>
+        </a>
+    </div>
+
+    <div class="menu-inner-shadow"></div>
+
+    <ul class="menu-inner py-1">
+        <li class="menu-item ">
+            <a asp-area="Parent" asp-controller="Home" asp-action="Index" class="menu-link">
+                <i class="flex-shrink-0 bx bi bi-house-door-fill me-2"></i>
+                <div data-i18n="Analytics"> Dashboard</div>
+            </a>
+        </li>
+
+        <li class="menu-item">
+            <a asp-area="Parent" asp-controller="Announcements" asp-action="Index" class="menu-link">
+                <i class="flex-shrink-0 bx bi bi-megaphone-fill me-2"></i>
+                <div data-i18n="Analytics"> Announcement</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a asp-area="Parent" asp-controller="Billings" asp-action="Index" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-money"></i>
+                <div data-i18n="Basic">Billings  </div>
+                @if (ViewData["HasPendingBills"] != null && (bool)ViewData["HasPendingBills"])
+                {
+
+                    <span class="navbar-text text-danger">
+
+                        <i class="bi bi-patch-exclamation-fill"></i>
+                    </span>
+                }
+            </a>
+        </li>
+        <li class="menu-item ">
+            <a asp-area="Parent" asp-controller="Schedule" asp-action="Index" class="menu-link">
+                <i class="flex-shrink-0 bx bi bi-calendar-event-fill me-2"></i>
+                <div data-i18n="Analytics"> Schedule</div>
+            </a>
+        </li>
+        <li class="menu-item active">
+            <a asp-area="Parent" asp-controller="Student" asp-action="Index" class="menu-link">
+                <i class="flex-shrink-0 bx bi bi-person-square me-2"></i>
+                <div data-i18n="Analytics"> My Children</div>
+            </a>
+        </li>
+        <li class="menu-item ">
+            <a asp-area="Parent" asp-controller="ProgramStudent" asp-action="Index" class="menu-link">
+                <i class="flex-shrink-0 bx bi bi-person-vcard-fill me-2"></i>
+                <div data-i18n="Analytics"> Registered Program</div>
+            </a>
+        </li>
+        <li class="menu-item ">
+            <a asp-area="Parent" asp-controller="Report" asp-action="Index" class="menu-link">
+                <i class="flex-shrink-0 bx bi bi-file-earmark-fill me-2"></i>
+                <div data-i18n="Analytics">Children Report</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a asp-area="Parent" asp-controller="CustServices" asp-action="Index" class="menu-link">
+                <i class="flex-shrink-0 bx bi bi-chat-dots-fill me-2"></i>
+                <div data-i18n="Analytics"> Customer Service</div>
+            </a>
+        </li>
+    </ul>
+</aside>
+
+<nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
+     id="layout-navbar">
+    <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
+        <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+            <i class="bx bx-menu bx-sm"></i>
+        </a>
+    </div>
+
+    <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+        <!-- Search -->
+        @* <div class="navbar-nav align-items-center">
+        <div class="nav-item d-flex align-items-center">
+        <i class="bx bx-search fs-4 lh-0"></i>
+        <input type="text"
+        class="form-control border-0 shadow-none"
+        placeholder="Search..."
+        aria-label="Search..." />
+        </div>
+        </div> *@
+        <!-- /Search -->
+
+        <ul class="navbar-nav flex-row align-items-center ms-auto">
+        </ul>
+    </div>
+</nav>
+
+
+<div class="card-body p-4">
+    <div class="row pb-3">
+        <div class="col-6">
+            <h3 class="fw-bold py-3 mb-2"><span class="text-muted fw-light">Children /</span> Register Children</h3>
+        </div>
+        <hr />
+
+        <div class="row">
+            <div class="col-md-6">
+
+                <form asp-action="Create">
+                    <!-- Existing fields -->
+                    <div class="form-group">
+                        <label asp-for="Name" class="control-label"></label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Passport" class="control-label"></label>
+                        <input asp-for="Passport" class="form-control" />
+                        <span asp-validation-for="Passport" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="DOB" class="control-label"></label>
+                        <input asp-for="DOB" class="form-control" type="date" />
+                        <span asp-validation-for="DOB" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Age" class="control-label"></label>
+                        <input asp-for="Age" class="form-control" />
+                        <span asp-validation-for="Age" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Gender" class="control-label"></label>
+                        <select asp-for="Gender" class="form-control" asp-items="Html.GetEnumSelectList<Gender>()"></select>
+                        <span asp-validation-for="Gender" class="text-danger"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label asp-for="Nasionality" class="control-label"></label>
+                        <input asp-for="Nasionality" class="form-control" />
+                        <span asp-validation-for="Nasionality" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Race" class="control-label"></label>
+                        <input asp-for="Race" class="form-control" />
+                        <span asp-validation-for="Race" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="BirthPlace" class="control-label"></label>
+                        <input asp-for="BirthPlace" class="form-control" />
+                        <span asp-validation-for="BirthPlace" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Religion" class="control-label"></label>
+                        <input asp-for="Religion" class="form-control" />
+                        <span asp-validation-for="Religion" class="text-danger"></span>
+                    </div>
+                    
+                    <!-- New fields -->
+                    <div class="form-group">
+                        <label asp-for="Pediatricians" class="control-label"></label>
+                        <input asp-for="Pediatricians" class="form-control" />
+                        <span asp-validation-for="Pediatricians" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="RecommendedByHospital" class="control-label"></label>
+                        <input asp-for="RecommendedByHospital" class="form-control" />
+                        <span asp-validation-for="RecommendedByHospital" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="DeadlineDiagnoseByDoctor" class="control-label"></label>
+                        <input asp-for="DeadlineDiagnoseByDoctor" class="form-control" />
+                        <span asp-validation-for="DeadlineDiagnoseByDoctor" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="DiagnosisCondition" class="control-label"></label>
+                        <input asp-for="DiagnosisCondition" class="form-control" />
+                        <span asp-validation-for="DiagnosisCondition" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Others Unit Involved</label>
+                        <div class="form-check">
+                            <input asp-for="OccupationalTherapy" class="form-check-input" type="checkbox" />
+                            <label class="form-check-label" for="OccupationalTherapy">
+                                Occupational Therapy
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input asp-for="SpeechTherapy" class="form-check-input" type="checkbox" />
+                            <label class="form-check-label" for="SpeechTherapy">
+                                Speech Therapy
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input asp-for="Others" class="form-check-input" type="checkbox" />
+                            <label class="form-check-label" for="Others">
+                                Others
+                            </label>
+                        </div>
+                        <span asp-validation-for="OccupationalTherapy" class="text-danger"></span>
+                        <span asp-validation-for="SpeechTherapy" class="text-danger"></span>
+                        <span asp-validation-for="Others" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <div>
+                            <input type="submit" value="Save" class="btn btn-primary" />
+                            <a asp-controller="Student" asp-action="Index" class="btn btn-secondary">Back to list</a>
+                        </div>
+                    </div>
+                </form>
+
+                @section Scripts {
+                    @{
+                        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+

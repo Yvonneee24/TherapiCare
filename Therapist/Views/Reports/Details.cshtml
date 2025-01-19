@@ -1,0 +1,1166 @@
+﻿@model TherapiCareTest.Models.Report
+
+<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+    <div class="app-brand demo">
+        <a asp-controller="CustServices" asp-action="Index" class="app-brand-link">
+            <span class="app-brand-text demo menu-text fw-bolder ms-2">TherapiCare</span>
+        </a>
+
+        <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+            <i class="bx bx-chevron-left bx-sm align-middle"></i>
+        </a>
+    </div>
+
+    <div class="menu-inner-shadow"></div>
+
+    <ul class="menu-inner py-1">
+        <!-- Dashboard -->
+        <li class="menu-item">
+            <a asp-area="Therapist" asp-controller="Home" asp-action="Index" class="menu-link">
+                <i class="flex-shrink-0 bx bi bi-calendar-check me-2"></i>
+                <div data-i18n="Analytics"> My Slots</div>
+            </a>
+        </li>
+        <li class="menu-item ">
+            <a asp-area="Therapist" asp-controller="TherapistList" asp-action="ListOfStudent" class="menu-link">
+                <i class="flex-shrink-0 bx bx bx-collection me-2"></i>
+                <div data-i18n="Analytics"> Student List</div>
+            </a>
+        </li>
+
+
+    </ul>
+</aside>
+
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h2 class="fw-bold py-3 mb-2">Report Details</h2>
+        </div>
+    </div>
+    <table class="table table-bordered table-striped" style="width:100%">
+        <tbody>
+            <tr>
+                <th style="width: 30%;">@Html.DisplayNameFor(model => model.Title)</th>
+                <td style="width: 60%;">@Html.DisplayFor(model => model.Title)</td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">@Html.DisplayNameFor(model => model.staffId)</th>
+                <td style="width: 60%;">@Html.DisplayFor(model => model.staffId)</td>
+            </tr>
+            <tr>
+                <th style="width: 20%;">@Html.DisplayNameFor(model => model.studentName)</th>
+                <td style="width: 80%;">@Html.DisplayFor(model => model.studentName)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Date)</th>
+                <td>@Html.DisplayFor(model => model.Date)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.numberOfSessionsAttended)</th>
+                <td>@Html.DisplayFor(model => model.numberOfSessionsAttended)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.treatment)</th>
+                <td>
+                    @if (Model.treatment == "1")
+                    {
+                        <text>Individual Therapy</text>
+                    }
+                    else if (Model.treatment == "2")
+                    {
+                        <text>Group Therapy</text>
+                    }
+                    else if (Model.treatment == "3")
+                    {
+                        <text>Early Intervention</text>
+                    }
+                    else if (Model.treatment == "4")
+                    {
+                        <text>Behaviour Management</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.reportStatus)</th>
+                <td>@Html.DisplayFor(model => model.reportStatus)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.enterByHimself)</th>
+                <td>
+                    @if (Model.enterByHimself == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (Model.enterByHimself == 2)
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.enterWithPrompting)</th>
+                <td>
+                    @if (Model.enterWithPrompting == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (Model.enterWithPrompting == 2)
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.difficultiesSeparateWithParents)</th>
+                <td>
+                    @if (Model.difficultiesSeparateWithParents == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (Model.difficultiesSeparateWithParents == 2)
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.withCryingRefuse)</th>
+                <td>
+                    @if (Model.withCryingRefuse == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (Model.withCryingRefuse == 2)
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.greetingWithPrompt)</th>
+                <td>
+                    @if (Model.greetingWithPrompt == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (Model.greetingWithPrompt == 2)
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.greetingByHimself)</th>
+                <td>
+                    @if (Model.greetingByHimself == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (Model.greetingByHimself == 2)
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.mute)</th>
+                <td>
+                    @if (Model.mute == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (Model.mute == 2)
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.refuseToEnter)</th>
+                <td>
+                    @if (Model.refuseToEnter == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (Model.refuseToEnter == 2)
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.subjectiveAssessmentNotes)</th>
+                <td>@Html.DisplayFor(model => model.subjectiveAssessmentNotes)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.rangeOfMotion)</th>
+                <td>
+                    @if (Model.rangeOfMotion == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (Model.rangeOfMotion == 2)
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.muscleTone)</th>
+                <td>
+                    @if (Model.muscleTone == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (Model.muscleTone == 2)
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.muscleStrength)</th>
+                <td>
+                    @if (Model.muscleStrength == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (Model.muscleStrength == 2)
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.muscleEndurance)</th>
+                <td>
+                    @if (Model.muscleEndurance == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (Model.muscleEndurance == 2)
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.jointMobility)</th>
+                <td>
+                    @if (Model.jointMobility == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (Model.jointMobility == 2)
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.trunkControlBalance)</th>
+                <td>
+                    @if (Model.trunkControlBalance == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (Model.trunkControlBalance == 2)
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.grossMotorFunctionStanding)</th>
+                <td>
+                    @if (Model.grossMotorFunctionStanding == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (Model.grossMotorFunctionStanding == 2)
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.grossMotorFunctionCrawling)</th>
+                <td>
+                    @if (Model.grossMotorFunctionCrawling == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (Model.grossMotorFunctionCrawling == 2)
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.grossMotorFunctionWalking)</td>
+                <td>@(Model.grossMotorFunctionWalking == 1 ? "Yes" : "No")</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.grossMotorFunctionJumping)</td>
+                <td>@(Model.grossMotorFunctionJumping == 1 ? "Yes" : "No")</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.grossMotorFunctionBroadJump)</td>
+                <td>@(Model.grossMotorFunctionBroadJump == 1 ? "Yes" : "No")</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.grossMotorFunctionKickBall)</td>
+                <td>@(Model.grossMotorFunctionKickBall == 1 ? "Yes" : "No")</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.grossMotorFunctionThrowBall)</td>
+                <td>@(Model.grossMotorFunctionThrowBall == 1 ? "Yes" : "No")</td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">@Html.DisplayNameFor(model => model.fineMotorFunctionGraspRelease)</th>
+                <td style="width: 60%;">
+                    @if (Model.fineMotorFunctionGraspRelease == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (Model.fineMotorFunctionGraspRelease == 2)
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">@Html.DisplayNameFor(model => model.fineMotorFunctionReaching)</th>
+                <td style="width: 60%;">
+                    @if (Model.fineMotorFunctionReaching == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (Model.fineMotorFunctionReaching == 2)
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">@Html.DisplayNameFor(model => model.fineMotorFunctionPutBlock)</th>
+                <td style="width: 60%;">
+                    @if (Model.fineMotorFunctionPutBlock == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (Model.fineMotorFunctionPutBlock == 2)
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                   <th style="width: 30%;">@Html.DisplayNameFor(model => model.fineMotorFunctionScribbles)</th>
+                   <td style="width: 60%;">
+                        @if (Model.fineMotorFunctionScribbles == 1)
+                        {
+                            <text>Yes</text>
+                        }
+                        else if (Model.fineMotorFunctionScribbles == 2)
+                        {
+                            <text>No</text>
+                        }
+
+                    </td>
+            </tr>
+
+            <tr>
+                <th style="width: 30%;">@Html.DisplayNameFor(model => model.fineMotorFunctionCubes)</th>
+                <td style="width: 60%;">@Html.DisplayFor(model => model.fineMotorFunctionCubes)</td>
+            </tr>
+
+            <tr>
+                <th style="width: 30%;">@Html.DisplayNameFor(model => model.fineMotorFunctionMature)</th>
+                <td style="width: 60%;">
+                    @if (Model.fineMotorFunctionMature == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (Model.fineMotorFunctionMature == 2)
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">@Html.DisplayNameFor(model => model.fineMotorFunctionImmature)</th>
+                <td style="width: 60%;">
+                    @if (Model.fineMotorFunctionImmature == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (Model.fineMotorFunctionImmature == 2)
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">@Html.DisplayNameFor(model => model.fineMotorFunctionImitate)</th>
+                <td style="width: 60%;">
+                    @if (Model.fineMotorFunctionImitate == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (Model.fineMotorFunctionImitate == 2)
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">@Html.DisplayNameFor(model => model.fineMotorFunctionCopying)</th>
+                <td style="width: 60%;">
+                    @if (Model.fineMotorFunctionCopying == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (Model.fineMotorFunctionCopying == 2)
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">@Html.DisplayNameFor(model => model.objectiveAssessmentNotes)</th>
+                <td style="width: 60%;">@Html.DisplayFor(model => model.objectiveAssessmentNotes)</td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">@Html.DisplayNameFor(model => model.tactile)</th>
+                <td style="width: 60%;">
+                    @if (Model.tactile == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (Model.tactile == 2)
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">@Html.DisplayNameFor(model => model.auditory)</th>
+                <td style="width: 60%;">
+                    @if (Model.auditory == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (Model.auditory == 2)
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">@Html.DisplayNameFor(model => model.visual)</th>
+                <td style="width: 60%;">
+                    @if (Model.visual == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (Model.visual == 2)
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">@Html.DisplayNameFor(model => model.olfactory)</th>
+                <td style="width: 60%;">
+                    @if (Model.olfactory == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (Model.olfactory == 2)
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">@Html.DisplayNameFor(model => model.gustatory)</th>
+                <td style="width: 60%;">
+                    @if (Model.gustatory == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (Model.gustatory == 2)
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">@Html.DisplayNameFor(model => model.vestibular)</th>
+                <td style="width: 60%;">
+                    @if (Model.vestibular == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (Model.vestibular == 2)
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">@Html.DisplayNameFor(model => model.proprioception)</th>
+                <td style="width: 60%;">
+                    @if (Model.proprioception == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (Model.proprioception == 2)
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">@Html.DisplayNameFor(model => model.alphabet)</th>
+                <td style="width: 60%;">
+                    @if (Model.alphabet == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (Model.alphabet == 2)
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">@Html.DisplayNameFor(model => model.numbers)</th>
+                <td style="width: 60%;">
+                    @if (Model.numbers == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (Model.numbers == 2)
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">@Html.DisplayNameFor(model => model.shapes)</th>
+                <td style="width: 60%;">
+                    @if (Model.shapes == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (Model.shapes == 2)
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">@Html.DisplayNameFor(model => model.colors)</th>
+                <td style="width: 60%;">
+                    @if (Model.colors == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (Model.colors == 2)
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">@Html.DisplayNameFor(model => model.memoryFunction)</th>
+                <td style="width: 60%;">
+                    @if (Model.memoryFunction == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (Model.memoryFunction == 2)
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">@Html.DisplayNameFor(model => model.attention)</th>
+                <td style="width: 60%;">
+                    @if (Model.attention == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (Model.attention == 2)
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">@Html.DisplayNameFor(model => model.concentration)</th>
+                <td style="width: 60%;">
+                    @if (Model.concentration == 1)
+                    {
+                        <text>Good</text>
+                    }
+                    else if (Model.concentration == 2)
+                    {
+                        <text>Fair</text>
+                    }
+                    else if (Model.concentration == 3)
+                    {
+                        <text>Poor</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">@Html.DisplayNameFor(model => model.problemSolving)</th>
+                <td style="width: 60%;">
+                    @if (Model.problemSolving == 1)
+                    {
+                        <text>Good</text>
+                    }
+                    else if (Model.problemSolving == 2)
+                    {
+                        <text>Fair</text>
+                    }
+                    else if (Model.problemSolving == 3)
+                    {
+                        <text>Poor</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">@Html.DisplayNameFor(model => model.writingSkill)</th>
+                <td style="width: 60%;">
+                    @if (Model.writingSkill == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (Model.writingSkill == 2)
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">@Html.DisplayNameFor(model => model.cognitiveProgressNote)</th>
+                <td style="width: 60%;">
+                    @Html.DisplayFor(model => model.cognitiveProgressNote)
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+
+
+    <h3 class="subsection-heading"> 5.1 Occupational Performance</h3>
+
+    <h4 class="subsection-heading">Activity Daily Living (ADL)</h4>
+    <table class="table table-bordered table-striped" style="width:100%">
+        <tbody>
+            <tr>
+                <th style="width: 30%;">@Html.DisplayNameFor(model => model.independent)</th>
+                <td style="width: 60%;">
+                    @if (Model.independent == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (Model.independent == 2)
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">@Html.DisplayNameFor(model => model.withSupervision)</th>
+                <td style="width: 60%;">
+                    @if (Model.withSupervision == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (Model.withSupervision == 2)
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">@Html.DisplayNameFor(model => model.maximumAssistance)</th>
+                <td style="width: 60%;">
+                    @if (Model.maximumAssistance == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (Model.maximumAssistance == 2)
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">@Html.DisplayNameFor(model => model.toiletTrained)</th>
+                <td style="width: 60%;">
+                    @if (Model.toiletTrained == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (Model.toiletTrained == 2)
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">@Html.DisplayNameFor(model => model.moneyManagement)</th>
+                <td style="width: 60%;">
+                    @if (Model.moneyManagement == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (Model.moneyManagement == 2)
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">@Html.DisplayNameFor(model => model.timeConcept)</th>
+                <td style="width: 60%;">
+                    @if (Model.timeConcept == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (Model.timeConcept == 2)
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">@Html.DisplayNameFor(model => model.foldingClothes)</th>
+                <td style="width: 60%;">
+                    @if (Model.foldingClothes == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (Model.foldingClothes == 2)
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">@Html.DisplayNameFor(model => model.hangingClothes)</th>
+                <td style="width: 60%;">
+                    @if (Model.hangingClothes == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (Model.hangingClothes == 2)
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">@Html.DisplayNameFor(model => model.sweepFloor)</th>
+                <td style="width: 60%;">
+                    @if (Model.sweepFloor == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (Model.sweepFloor == 2)
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">@Html.DisplayNameFor(model => model.makingDrinks)</th>
+                <td style="width: 60%;">
+                    @if (Model.makingDrinks == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (Model.makingDrinks == 2)
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">@Html.DisplayNameFor(model => model.prepareSimpleFood)</th>
+                <td style="width: 60%;">
+                    @if (Model.prepareSimpleFood == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (Model.prepareSimpleFood == 2)
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">@Html.DisplayNameFor(model => model.usePhone)</th>
+                <td style="width: 60%;">
+                    @if (Model.usePhone == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (Model.usePhone == 2)
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">@Html.DisplayNameFor(model => model.occupationRemark)</th>
+                <td style="width: 60%;">@Html.DisplayFor(model => model.occupationRemark)</td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-bordered table-striped" style="width:100%">
+        <tbody>
+            <h3 class="section-heading"> 6.1 Emotional Regulation Skills</h3>
+
+            <h4 class="subsection-heading">Behaviour</h4>
+            <tr>
+                <th style="width: 30%;">@Html.DisplayNameFor(model => model.temperedTantrum)</th>
+                <td style="width: 60%;">
+                    @if (Model.temperedTantrum == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (Model.temperedTantrum == 2)
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">@Html.DisplayNameFor(model => model.manipulative)</th>
+                <td style="width: 60%;">
+                    @if (Model.manipulative == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (Model.manipulative == 2)
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">@Html.DisplayNameFor(model => model.easilyDistracted)</th>
+                <td style="width: 60%;">
+                    @if (Model.easilyDistracted == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (Model.easilyDistracted == 2)
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">@Html.DisplayNameFor(model => model.passive)</th>
+                <td style="width: 60%;">
+                    @if (Model.passive == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (Model.passive == 2)
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">@Html.DisplayNameFor(model => model.cooperative)</th>
+                <td style="width: 60%;">
+                    @if (Model.cooperative == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (Model.cooperative == 2)
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">@Html.DisplayNameFor(model => model.isolation)</th>
+                <td style="width: 60%;">
+                    @if (Model.isolation == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (Model.isolation == 2)
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">@Html.DisplayNameFor(model => model.reluctant)</th>
+                <td style="width: 60%;">
+                    @if (Model.reluctant == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (Model.reluctant == 2)
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-bordered table-striped" style="width:100%">
+        <tbody>
+            <h3 class="section-heading">7.1 Communication & Social Skills</h3>
+
+            <h4 class="subsection-heading">Following Instruction</h4>
+            <tr>
+                <th style="width: 30%;">@Html.DisplayNameFor(model => model.repatitivePrompting)</th>
+                <td style="width: 60%;">
+                    @if (Model.repatitivePrompting == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (Model.repatitivePrompting == 2)
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">@Html.DisplayNameFor(model => model.verbalPrompting)</th>
+                <td style="width: 60%;">
+                    @if (Model.verbalPrompting == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (Model.verbalPrompting == 2)
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">@Html.DisplayNameFor(model => model.physicalPrompting)</th>
+                <td style="width: 60%;">
+                    @if (Model.physicalPrompting == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (Model.physicalPrompting == 2)
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">@Html.DisplayNameFor(model => model.eyeContactPerson)</th>
+                <td style="width: 60%;">
+                    @if (Model.eyeContactPerson == 1)
+                    {
+                        <text>Good</text>
+                    }
+                    else if (Model.eyeContactPerson == 2)
+                    {
+                        <text>Fair</text>
+                    }
+                    else if (Model.eyeContactPerson == 3)
+                    {
+                        <text>Poor</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">@Html.DisplayNameFor(model => model.eyeContactObject)</th>
+                <td style="width: 60%;">
+                    @if (Model.eyeContactObject == 1)
+                    {
+                        <text>Good</text>
+                    }
+                    else if (Model.eyeContactObject == 2)
+                    {
+                        <text>Fair</text>
+                    }
+                    else if (Model.eyeContactObject == 3)
+                    {
+                        <text>Poor</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">@Html.DisplayNameFor(model => model.initiateAnswerQuestion)</th>
+                <td style="width: 60%;">
+                    @if (Model.initiateAnswerQuestion == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (Model.initiateAnswerQuestion == 2)
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">@Html.DisplayNameFor(model => model.verbalRespond)</th>
+                <td style="width: 60%;">
+                    @if (Model.verbalRespond == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (Model.verbalRespond == 2)
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">@Html.DisplayNameFor(model => model.voiceClarify)</th>
+                <td style="width: 60%;">
+                    @if (Model.voiceClarify == 1)
+                    {
+                        <text>Clear</text>
+                    }
+                    else if (Model.voiceClarify == 2)
+                    {
+                        <text>Slurred</text>
+                    }
+                    else if (Model.voiceClarify == 3)
+                    {
+                        <text>Imitate But Vowel Sound</text>
+                    }
+                    else if (Model.voiceClarify == 4)
+                    {
+                        <text>No Speech</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">@Html.DisplayNameFor(model => model.facialExpression)</th>
+                <td style="width: 60%;">
+                    @if (Model.facialExpression == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (Model.facialExpression == 2)
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">@Html.DisplayNameFor(model => model.bodyLanguage)</th>
+                <td style="width: 60%;">
+                    @if (Model.bodyLanguage == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (Model.bodyLanguage == 2)
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">@Html.DisplayNameFor(model => model.takingTurn)</th>
+                <td style="width: 60%;">
+                    @if (Model.takingTurn == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (Model.takingTurn == 2)
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">@Html.DisplayNameFor(model => model.sharing)</th>
+                <td style="width: 60%;">
+                    @if (Model.sharing == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (Model.sharing == 2)
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">@Html.DisplayNameFor(model => model.stayInGrouping)</th>
+                <td style="width: 60%;">
+                    @if (Model.stayInGrouping == 1)
+                    {
+                        <text>Yes</text>
+                    }
+                    else if (Model.stayInGrouping == 2)
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 30%;"> @Html.DisplayNameFor(model => model.academicPerformance)</th>
+                <td style="width: 60%;">
+                    @if (Model.academicPerformance == 1)
+                    {
+                        <text>Good</text>
+                    }
+                    else if (Model.academicPerformance == 2)
+                    {
+                        <text>Average</text>
+                    }
+                    else if (Model.academicPerformance == 3)
+                    {
+                        <text>Fair</text>
+                    }
+                    else if (Model.academicPerformance == 4)
+                    {
+                        <text>Poor</text>
+                    }
+                    else if (Model.academicPerformance == 5)
+                    {
+                        <text>Unable to Follow</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">@Html.DisplayNameFor(model => model.analysisProblem)</th>
+                <td style="width: 60%;">
+                    @Html.DisplayFor(model => model.analysisProblem)
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">@Html.DisplayNameFor(model => model.txPlan)</th>
+                <td style="width: 60%;">
+                    @Html.DisplayFor(model => model.txPlan)
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">@Html.DisplayNameFor(model => model.therapistIncharge)</th>
+                <td style="width: 60%;">
+                    @Html.DisplayFor(model => model.therapistIncharge)
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div>
+@*     <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    *@    <a asp-action="ListOfStudent" asp-controller="TherapistList" class="btn btn-primary">Back to List</a>
+</div>

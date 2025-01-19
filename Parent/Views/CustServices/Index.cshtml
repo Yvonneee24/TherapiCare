@@ -1,0 +1,212 @@
+﻿@{
+    ViewData["Title"] = "Parent Chat";
+
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Parent Chat</title>
+    <style>
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            height: 55vh;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            overflow-y: scroll;
+            margin-bottom: 20px;
+            padding: 10px;
+        }
+
+        .message {
+            margin-bottom: 10px;
+            padding: 8px 12px;
+            border-radius: 5px;
+        }
+
+            .message.sent {
+                background-color: #DCF8C6;
+                align-self: flex-end;
+                color: #333; /* Adjust text color for better readability */
+            }
+
+            .message.received {
+                background-color: #EAEAEA;
+                align-self: flex-start;
+            }
+
+            .message .meta {
+                font-size: 0.8em;
+                color: #999;
+                margin-top: 4px;
+            }
+
+        .input-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+            .input-container input[type=text] {
+                flex: 1;
+                margin-right: 10px;
+            }
+    </style>
+</head>
+
+
+<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+    <div class="app-brand demo">
+        <a asp-controller="Home" asp-action="Index" class="app-brand-link">
+            <span class="app-brand-text demo menu-text fw-bolder ms-2">TherapiCare</span>
+        </a>
+
+        <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+            <i class="bx bx-chevron-left bx-sm align-middle"></i>
+        </a>
+    </div>
+
+    <div class="menu-inner-shadow"></div>
+
+    <ul class="menu-inner py-1">
+        <li class="menu-item ">
+            <a asp-area="Parent" asp-controller="Home" asp-action="Index" class="menu-link">
+                <i class="flex-shrink-0 bx bi bi-house-door-fill me-2"></i>
+                <div data-i18n="Analytics"> Dashboard</div>
+            </a>
+        </li>
+
+        <li class="menu-item">
+            <a asp-area="Parent" asp-controller="Announcements" asp-action="Index" class="menu-link">
+                <i class="flex-shrink-0 bx bi bi-megaphone-fill me-2"></i>
+                <div data-i18n="Analytics"> Announcement</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a asp-area="Parent" asp-controller="Billings" asp-action="Index" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-money"></i>
+                <div data-i18n="Basic">Billings  </div>
+                @if (ViewData["HasPendingBills"] != null && (bool)ViewData["HasPendingBills"])
+                {
+
+                    <span class="navbar-text text-danger">
+
+                        <i class="bi bi-patch-exclamation-fill"></i>
+                    </span>
+                }
+            </a>
+        </li>
+        <li class="menu-item ">
+            <a asp-area="Parent" asp-controller="Schedule" asp-action="Index" class="menu-link">
+                <i class="flex-shrink-0 bx bi bi-calendar-event-fill me-2"></i>
+                <div data-i18n="Analytics"> Schedule</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a asp-area="Parent" asp-controller="Student" asp-action="Index" class="menu-link">
+                <i class="flex-shrink-0 bx bi bi-person-square me-2"></i>
+                <div data-i18n="Analytics"> My Children</div>
+            </a>
+        </li>
+        <li class="menu-item ">
+            <a asp-area="Parent" asp-controller="ProgramStudent" asp-action="Index" class="menu-link">
+                <i class="flex-shrink-0 bx bi bi-person-vcard-fill me-2"></i>
+                <div data-i18n="Analytics"> Registered Program</div>
+            </a>
+        </li>
+        <li class="menu-item ">
+            <a asp-area="Parent" asp-controller="Report" asp-action="Index" class="menu-link">
+                <i class="flex-shrink-0 bx bi bi-file-earmark-fill me-2"></i>
+                <div data-i18n="Analytics">Children Report</div>
+            </a>
+        </li>
+        <li class="menu-item active">
+            <a asp-area="Parent" asp-controller="CustServices" asp-action="Index" class="menu-link">
+                <i class="flex-shrink-0 bx bi bi-chat-dots-fill me-2"></i>
+                <div data-i18n="Analytics"> Customer Service</div>
+            </a>
+        </li>
+    </ul>
+</aside>
+
+
+
+
+
+<body>
+    <br />
+    <h2 class="text-black py-2">Customer Service Chat</h2>
+    <hr />
+    <div class="container mt-5">
+        <div class="chat-container" id="parentChatContainer">
+            <!-- Messages will be appended here -->
+        </div>
+        <div class="input-container">
+            <input type="text" id="parentMessageInput" class="form-control" placeholder="Type your message...">
+            <button id="parentSendButton" class="btn btn-primary">Send</button>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/5.0.9/signalr.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const connection = new signalR.HubConnectionBuilder().withUrl("/chathub").build();
+
+            connection.on("ReceiveMessage", function (user, message, timestamp) {
+                if (user === "Parent") {
+
+                    return;
+                }
+                appendMessage(user, message, timestamp, 'received');
+            });
+
+            connection.start().catch(function (err) {
+                return console.error(err.toString());
+            });
+
+            function appendMessage(user, message, timestamp, messageType) {
+                const chatContainer = document.getElementById('parentChatContainer');
+                const messageElement = document.createElement('div');
+                messageElement.classList.add('message', messageType === 'sent' ? 'sent' : 'received');
+                messageElement.innerHTML = `
+                                <strong>${user}</strong>: ${message}
+                                <div class="meta">${formatTimestamp(timestamp)}</div>`;
+                chatContainer.appendChild(messageElement);
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+            }
+
+            document.getElementById("parentSendButton").addEventListener("click", function (event) {
+                const user = "Parent"; // Replace with actual user info
+                const message = document.getElementById("parentMessageInput").value.trim();
+                if (message !== "") {
+                    const timestamp = new Date().getTime(); // Generate timestamp for the message
+                    appendMessage(user, message, timestamp, 'sent');
+                    connection.invoke("SendMessage", user, message, timestamp).catch(function (err) {
+                        return console.error(err.toString());
+                    });
+                    document.getElementById("parentMessageInput").value = "";
+                }
+                event.preventDefault();
+            });
+
+            function formatTimestamp(timestamp) {
+                const date = new Date(timestamp);
+                return `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
+            }
+        });
+    </script>
+
+    <script>
+        window.addEventListener('beforeunload', function (e) {
+            e.preventDefault();
+            e.returnValue = 'Are you sure you want to refresh? All chat messages will be lost.';
+            return e.returnValue;
+        });
+    </script>
+</body>
+</html>

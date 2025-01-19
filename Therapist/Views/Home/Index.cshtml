@@ -1,0 +1,106 @@
+﻿@model IEnumerable<TherapiCareTest.ViewModels.TherapistSlotVM>
+<partial name="_Notification" />
+<!-- Menu -->
+
+<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+    <div class="app-brand demo">
+        <a asp-controller="CustServices" asp-action="Index" class="app-brand-link">
+            <span class="app-brand-text demo menu-text fw-bolder ms-2">TherapiCare</span>
+        </a>
+
+        <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+            <i class="bx bx-chevron-left bx-sm align-middle"></i>
+        </a>
+    </div>
+
+    <div class="menu-inner-shadow"></div>
+
+    <ul class="menu-inner py-1">
+        <!-- Dashboard -->
+        <li class="menu-item active">
+            <a asp-area="Therapist" asp-controller="Home" asp-action="Index" class="menu-link">
+                <i class="flex-shrink-0 bx bi bi-calendar-check me-2"></i>
+                <div data-i18n="Analytics"> My Slots</div>
+            </a>
+        </li>
+        <li class="menu-item ">
+            <a asp-area="Therapist" asp-controller="TherapistList" asp-action="ListOfStudent" class="menu-link">
+                <i class="flex-shrink-0 bx bx bx-collection me-2"></i>
+                <div data-i18n="Analytics"> Student List</div>
+            </a>
+        </li>
+
+
+    </ul>
+</aside>
+<!-- / Menu -->
+<nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
+     id="layout-navbar">
+    <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
+        <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+            <i class="bx bx-menu bx-sm"></i>
+        </a>
+    </div>
+
+    <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+        <ul class="navbar-nav flex-row align-items-center ms-auto">
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h2 class="fw-bold py-3 mb-2">My Slots</h2>
+        </div>
+    </div>
+    <table class="table table-bordered table-striped" style="width:100%">
+    <thead>
+        <tr>
+            
+            <th>
+                Date
+            </th>
+            <th>
+                Start Time
+            </th>
+            <th>
+                End Time
+            </th>
+            <th>
+                Program
+            </th>
+            <th>
+                Student Name
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                
+                <td>
+                    @item.Slot.StartTime.ToString("dd/MM/yyyy")
+                </td>
+                <td>
+                    @item.Slot.StartTime.ToString("HH:mm")
+                </td>
+                <td>
+                    @item.Slot.EndTime.ToString("HH:mm")
+                </td>
+                <td>
+                    @item.ProgramName
+                </td>
+                <td>
+                    @item.StudentName
+                </td>
+                <td>
+                        <a asp-area="Therapist" asp-controller="Home" asp-action="Edit" asp-route-id="@item.Slot.Id" asp-route-therapistId="@item.Slot.TherapistId" asp-route-sessionid="@item.Slot.SessionId" class="btn btn-primary mx-2">Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+</div>

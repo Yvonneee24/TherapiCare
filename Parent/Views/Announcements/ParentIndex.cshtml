@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Announcement>
+
+@{
+    ViewData["Title"] = "ParentIndex";
+}
+<br />
+
+<h2 class="text-black py-2">Announcements</h2>
+<hr />
+<br />
+
+<br />
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.a_id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.a_title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.a_description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.a_date)
+            </th>
+
+
+            @* <th>
+            @Html.DisplayNameFor(model => model.a_image)
+            </th> *@
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.a_id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.a_title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.a_description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.a_date)
+                </td>
+                @* <td>
+            @Html.DisplayFor(modelItem => item.a_image)
+            </td> *@
+                <td>
+                    <a asp-controller="Announcements" asp-action="Details" asp-route-id="@item.a_id" class="btn btn-primary mx-2">
+                        <i class="bi bi-card-list"></i> Details
+                    </a>
+               
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

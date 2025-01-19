@@ -1,0 +1,266 @@
+﻿@{
+    ViewData["Title"] = "Parent Dashboard";
+}
+<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+    <div class="app-brand demo">
+        <a asp-controller="Home" asp-action="Index" class="app-brand-link">
+            <span class="app-brand-text demo menu-text fw-bolder ms-2">TherapiCare</span>
+        </a>
+
+        <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+            <i class="bx bx-chevron-left bx-sm align-middle"></i>
+        </a>
+    </div>
+
+    <div class="menu-inner-shadow"></div>
+
+    <ul class="menu-inner py-1">
+        <li class="menu-item active">
+            <a asp-area="Parent" asp-controller="Home" asp-action="Index" class="menu-link">
+                <i class="flex-shrink-0 bx bi bi-house-door-fill me-2"></i>
+                <div data-i18n="Analytics"> Dashboard</div>
+            </a>
+        </li>
+
+        <li class="menu-item ">
+            <a asp-area="Parent" asp-controller="Announcements" asp-action="Index" class="menu-link">
+                <i class="flex-shrink-0 bx bi bi-megaphone-fill me-2"></i>
+                <div data-i18n="Analytics"> Announcement</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a asp-area="Parent" asp-controller="Billings" asp-action="Index" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-money"></i>
+                <div data-i18n="Basic">Billings  </div>
+                @if (ViewData["HasPendingBills"] != null && (bool)ViewData["HasPendingBills"])
+                {
+
+                    <span class="navbar-text text-danger">
+
+                        <i class="bi bi-patch-exclamation-fill"></i>
+                    </span>
+                }
+            </a>
+        </li>
+        <li class="menu-item">
+            <a asp-area="Parent" asp-controller="Schedule" asp-action="Index" class="menu-link">
+                <i class="flex-shrink-0 bx bi bi-calendar-event-fill me-2"></i>
+                <div data-i18n="Analytics"> Schedule</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a asp-area="Parent" asp-controller="Student" asp-action="Index" class="menu-link">
+                <i class="flex-shrink-0 bx bi bi-person-square me-2"></i>
+                <div data-i18n="Analytics"> My Children</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a asp-area="Parent" asp-controller="ProgramStudent" asp-action="Index" class="menu-link">
+                <i class="flex-shrink-0 bx bi bi-person-vcard-fill me-2"></i>
+                <div data-i18n="Analytics"> Registered Program</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a asp-area="Parent" asp-controller="Report" asp-action="Index" class="menu-link">
+                <i class="flex-shrink-0 bx bi bi-file-earmark-fill me-2"></i>
+                <div data-i18n="Analytics">Children Report</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a asp-area="Parent" asp-controller="CustServices" asp-action="Index" class="menu-link">
+                <i class="flex-shrink-0 bx bi bi-chat-dots-fill me-2"></i>
+                <div data-i18n="Analytics"> Customer Service</div>
+            </a>
+        </li>
+    </ul>
+</aside>
+<br />
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12 mb-4 order-0">
+            <div class="card h-100 position-relative shadow-lg">
+                <div class="d-flex align-items-end row">
+                    <div class="col-sm-7">
+                        <div class="card-body">
+                            <h1 class="card-title text-primary">Welcome, @ViewBag.ParentName!</h1>
+                            <p class="mb-4">
+                                Welcome to your dashboard. Here, you can manage students, view registered programs, check schedules, and read the latest announcements.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-sm-5 text-center text-sm-left">
+                        <div class="card-body pb-0 px-0 px-md-4">
+                            <img src="../assets/img/illustrations/man-with-laptop-light.png" height="140" alt="View Badge User" data-app-dark-img="illustrations/man-with-laptop-dark.png" data-app-light-img="illustrations/man-with-laptop-light.png" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Registered Programs, Schedule, Announcements -->
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 position-relative shadow-lg">
+                <div class="card-body">
+                    <div class="text-center mt-3">
+                        <h5>Programs</h5>
+                        @if (ViewBag.RegisteredPrograms != null && ViewBag.RegisteredPrograms.Count > 0)
+                        {
+                            <table class="table table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Name</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var program in ViewBag.RegisteredPrograms)
+                                    {
+                                        <tr>
+                                            <td>@program.Name</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        }
+                        else
+                        {
+                            <p class="text-muted">No programs available.</p>
+                        }
+                    </div>
+                    <div class="text-center">
+                        <a asp-controller="TherapyProgram" asp-action="Index" class="btn btn-outline-primary mt-3">
+                            <i class="bi bi-view-list"></i> View All Programs
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 position-relative shadow-lg">
+                <div class="card-body">
+                    <div class="text-center mt-3">
+                        <h5>Schedule</h5>
+                        @if (ViewBag.Schedules != null && ViewBag.Schedules.Count > 0)
+                        {
+                            <table class="table table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Start Time</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var schedule in ViewBag.Schedules)
+                                    {
+                                        <tr>
+                                            <td>@schedule.Slot.StartTime.ToString("yyyy-MM-dd")</td>
+                                            <td>@schedule.Slot.StartTime.ToString("HH:mm")</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        }
+                        else
+                        {
+                            <p class="text-muted">No upcoming schedule available.</p>
+                        }
+                    </div>
+                    <div class="text-center">
+                        <a asp-controller="Schedule" asp-action="Index" class="btn btn-outline-primary mt-3">
+                            <i class="bi bi-calendar"></i> View Full Schedule
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 position-relative shadow-lg">
+                <div class="card-body">
+                    <div class="text-center mt-3">
+                        <h5>Announcements</h5>
+                        @if (ViewBag.Announcements != null && ViewBag.Announcements.Count > 0)
+                        {
+                            <table class="table table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Title</th>
+                                        <th scope="col">Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var announcement in ViewBag.Announcements)
+                                    {
+                                        <tr>
+                                            <td>@announcement.a_title</td>
+                                            <td>@announcement.a_date.ToString("MMMM dd, yyyy")</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        }
+                        else
+                        {
+                            <p class="text-muted">No announcements at the moment.</p>
+                        }
+                    </div>
+                    <div class="text-center">
+                        <a asp-controller="Announcements" asp-action="Index" class="btn btn-outline-primary mt-3">
+                            <i class="bi bi-megaphone"></i> View All Announcements
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Students -->
+    <div class="row">
+        <div class="col-md-12 mb-4">
+            <div class="card h-100 position-relative shadow-lg">
+                <div class="card-body">
+                    <div class="text-center mt-3">
+                        <h5>Students</h5>
+                        @if (ViewBag.Students != null && ViewBag.Students.Count > 0)
+                        {
+                            <table class="table table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Gender</th>
+                                        <th scope="col">Nationality</th>
+                                        <th scope="col">Birth Place</th>
+                                        <th scope="col">DOB</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var student in ViewBag.Students)
+                                    {
+                                        <tr>
+                                            <td>@student.Name</td>
+                                            <td>@student.Gender</td>
+                                            <td>@student.Nasionality</td>
+                                            <td>@student.BirthPlace</td>
+                                            <td>@student.DOB.ToString("MMMM dd, yyyy")</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        }
+                        else
+                        {
+                            <p class="text-muted">No students available.</p>
+                        }
+                    </div>
+                    <div class="text-center">
+                        <a asp-controller="Student" asp-action="Index" class="btn btn-outline-primary mt-3">
+                            <i class="bi bi-people"></i> View All Students
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
