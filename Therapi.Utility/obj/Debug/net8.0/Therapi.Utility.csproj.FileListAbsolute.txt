@@ -1,0 +1,39 @@
+C:\Desktop\TherapiCare\Therapi.Utility\bin\Debug\net8.0\Therapi.Utility.deps.json
+C:\Desktop\TherapiCare\Therapi.Utility\bin\Debug\net8.0\Therapi.Utility.dll
+C:\Desktop\TherapiCare\Therapi.Utility\bin\Debug\net8.0\Therapi.Utility.pdb
+C:\Desktop\TherapiCare\Therapi.Utility\obj\Debug\net8.0\Therapi.Utility.csproj.AssemblyReference.cache
+C:\Desktop\TherapiCare\Therapi.Utility\obj\Debug\net8.0\Therapi.Utility.GeneratedMSBuildEditorConfig.editorconfig
+C:\Desktop\TherapiCare\Therapi.Utility\obj\Debug\net8.0\Therapi.Utility.AssemblyInfoInputs.cache
+C:\Desktop\TherapiCare\Therapi.Utility\obj\Debug\net8.0\Therapi.Utility.AssemblyInfo.cs
+C:\Desktop\TherapiCare\Therapi.Utility\obj\Debug\net8.0\Therapi.Utility.csproj.CoreCompileInputs.cache
+C:\Desktop\TherapiCare\Therapi.Utility\obj\Debug\net8.0\Therapi.Utility.sourcelink.json
+C:\Desktop\TherapiCare\Therapi.Utility\obj\Debug\net8.0\Therapi.Utility.dll
+C:\Desktop\TherapiCare\Therapi.Utility\obj\Debug\net8.0\refint\Therapi.Utility.dll
+C:\Desktop\TherapiCare\Therapi.Utility\obj\Debug\net8.0\Therapi.Utility.pdb
+C:\Desktop\TherapiCare\Therapi.Utility\obj\Debug\net8.0\ref\Therapi.Utility.dll
+C:\Desktop\TherapiCare (Test)\Therapi.Utility\bin\Debug\net8.0\Therapi.Utility.deps.json
+C:\Desktop\TherapiCare (Test)\Therapi.Utility\bin\Debug\net8.0\Therapi.Utility.dll
+C:\Desktop\TherapiCare (Test)\Therapi.Utility\bin\Debug\net8.0\Therapi.Utility.pdb
+C:\Desktop\TherapiCare (Test)\Therapi.Utility\obj\Debug\net8.0\Therapi.Utility.csproj.AssemblyReference.cache
+C:\Desktop\TherapiCare (Test)\Therapi.Utility\obj\Debug\net8.0\Therapi.Utility.GeneratedMSBuildEditorConfig.editorconfig
+C:\Desktop\TherapiCare (Test)\Therapi.Utility\obj\Debug\net8.0\Therapi.Utility.AssemblyInfoInputs.cache
+C:\Desktop\TherapiCare (Test)\Therapi.Utility\obj\Debug\net8.0\Therapi.Utility.AssemblyInfo.cs
+C:\Desktop\TherapiCare (Test)\Therapi.Utility\obj\Debug\net8.0\Therapi.Utility.csproj.CoreCompileInputs.cache
+C:\Desktop\TherapiCare (Test)\Therapi.Utility\obj\Debug\net8.0\Therapi.Utility.sourcelink.json
+C:\Desktop\TherapiCare (Test)\Therapi.Utility\obj\Debug\net8.0\Therapi.Utility.dll
+C:\Desktop\TherapiCare (Test)\Therapi.Utility\obj\Debug\net8.0\refint\Therapi.Utility.dll
+C:\Desktop\TherapiCare (Test)\Therapi.Utility\obj\Debug\net8.0\Therapi.Utility.pdb
+C:\Desktop\TherapiCare (Test)\Therapi.Utility\obj\Debug\net8.0\ref\Therapi.Utility.dll
+C:\Desktop\TherapiCareTest\Therapi.Utility\bin\Debug\net8.0\Therapi.Utility.deps.json
+C:\Desktop\TherapiCareTest\Therapi.Utility\bin\Debug\net8.0\Therapi.Utility.dll
+C:\Desktop\TherapiCareTest\Therapi.Utility\bin\Debug\net8.0\Therapi.Utility.pdb
+C:\Desktop\TherapiCareTest\Therapi.Utility\obj\Debug\net8.0\Therapi.Utility.csproj.AssemblyReference.cache
+C:\Desktop\TherapiCareTest\Therapi.Utility\obj\Debug\net8.0\Therapi.Utility.GeneratedMSBuildEditorConfig.editorconfig
+C:\Desktop\TherapiCareTest\Therapi.Utility\obj\Debug\net8.0\Therapi.Utility.AssemblyInfoInputs.cache
+C:\Desktop\TherapiCareTest\Therapi.Utility\obj\Debug\net8.0\Therapi.Utility.AssemblyInfo.cs
+C:\Desktop\TherapiCareTest\Therapi.Utility\obj\Debug\net8.0\Therapi.Utility.csproj.CoreCompileInputs.cache
+C:\Desktop\TherapiCareTest\Therapi.Utility\obj\Debug\net8.0\Therapi.Utility.sourcelink.json
+C:\Desktop\TherapiCareTest\Therapi.Utility\obj\Debug\net8.0\Therapi.Utility.dll
+C:\Desktop\TherapiCareTest\Therapi.Utility\obj\Debug\net8.0\refint\Therapi.Utility.dll
+C:\Desktop\TherapiCareTest\Therapi.Utility\obj\Debug\net8.0\Therapi.Utility.pdb
+C:\Desktop\TherapiCareTest\Therapi.Utility\obj\Debug\net8.0\ref\Therapi.Utility.dll

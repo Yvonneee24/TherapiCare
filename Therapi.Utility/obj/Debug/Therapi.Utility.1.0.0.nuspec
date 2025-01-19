@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Therapi.Utility</id>
+    <version>1.0.0</version>
+    <authors>Therapi.Utility</authors>
+    <description>Package Description</description>
+    <repository type="git" commit="c22b365825c30c865bddf9b0a445351456673ef3" />
+    <dependencies>
+      <group targetFramework="net8.0">
+        <dependency id="Microsoft.AspNetCore.Identity.UI" version="8.0.6" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="C:\Desktop\TherapiCare\Therapi.Utility\bin\Debug\net8.0\Therapi.Utility.dll" target="lib\net8.0\Therapi.Utility.dll" />
+  </files>
+</package>
